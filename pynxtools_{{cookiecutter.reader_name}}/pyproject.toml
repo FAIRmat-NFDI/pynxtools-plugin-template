@@ -3,7 +3,7 @@ requires = ["setuptools>=64.0.1", "setuptools-scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "{{cookiecutter.project_name}}"
+name = "pynxtools_{{cookiecutter.reader_name}}"
 dynamic = ["version"]
 authors = [
     { name = "{{cookiecutter.author_name}}", email = "{{cookiecutter.author_email}}" },
@@ -24,4 +24,4 @@ dependencies = [
 ]
 
 [project.entry-points."pynxtools.reader"]
-{{cookiecutter.reader_name}} = "pynxtools_{{cookiecutter.project_name}}.reader:{{cookiecutter.class_name}}"
+{{cookiecutter.reader_name}} = "pynxtools_{{cookiecutter.reader_name}}.reader:{{cookiecutter.class_name}}"
