@@ -8,7 +8,7 @@ dynamic = ["version"]
 authors = [
     { name = "{{cookiecutter.author_name}}", email = "{{cookiecutter.author_email}}" },
 ]
-description = "Extend NeXus for materials science experiment and serve as a NOMAD parser implementation for NeXus."
+description = "{{cookiecutter.description}}"
 readme = "README.md"
 license = "Apache-2.0"
 requires-python = ">=3.8,<3.11"
@@ -20,7 +20,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "pynxtools"
+    "pynxtools>=0.0.9"
 ]
 
 [project.entry-points."pynxtools.reader"]
