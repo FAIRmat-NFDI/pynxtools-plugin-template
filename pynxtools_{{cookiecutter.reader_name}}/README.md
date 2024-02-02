@@ -1,2 +1,2 @@
-# {{cookiecutter.project_slug}}
+# pynxtools_{{cookiecutter.reader_name}}
 A cookiecutter template for creating pynxtools plugins
