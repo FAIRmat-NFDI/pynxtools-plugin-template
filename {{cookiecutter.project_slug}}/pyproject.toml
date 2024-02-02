@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=64.0.1", "setuptools-scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "{{cookiecutter.project_name}}"
+dynamic = ["version"]
+authors = [
+    { name = "{{cookiecutter.author_name}}", email = "{{cookiecutter.author_email}}" },
+]
+description = "Extend NeXus for materials science experiment and serve as a NOMAD parser implementation for NeXus."
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.8,<3.11"
+classifiers = [
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "pynxtools"
+]
+
+[project.entry-points."pynxtools.reader"]
+{{cookiecutter.reader_name}} = "{{cookiecutter.project_name}}.reader:{{cookiecutter.class_name}}"
