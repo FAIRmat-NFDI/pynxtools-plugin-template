@@ -11,7 +11,7 @@ from pynxtools.dataconverter.helpers import (
 )
 from pynxtools.dataconverter.template import Template
 from pynxtools.nexus.nxdl_utils import get_nexus_definitions_path
-from {{cookiecutter.project_name}}.reader import {{cookiecutter.class_name}}
+from pynxtools_{{cookiecutter.reader_name}}.reader import {{cookiecutter.class_name}}
 
 
 def test_example_data():

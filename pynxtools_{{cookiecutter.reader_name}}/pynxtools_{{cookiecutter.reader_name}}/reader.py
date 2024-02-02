@@ -8,7 +8,7 @@ class {{cookiecutter.class_name}}(BaseReader):
     PLEASE UPDATE
     """
 
-    supported_nxdls = {{cookiecutter.supported_nxdls}}
+    supported_nxdls = ["{{cookiecutter.supported_nxdl}}"]
 
     def read(
         self,

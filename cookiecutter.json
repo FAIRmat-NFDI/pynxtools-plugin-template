@@ -1,8 +1,8 @@
 {
-    "project_name": "",
     "reader_name": "",
-    "class_name": "",
+    "class_name": ""
     "author_name": "",
     "author_email": "",
-    "supported_nxdls": [""]
+    "supported_nxdl": "",
+    "license": ["MIT", "BSD-3", "GNU GPL v3.0", "Apache Software License 2.0"],
 }
