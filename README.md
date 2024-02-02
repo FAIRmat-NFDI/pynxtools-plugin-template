@@ -8,7 +8,7 @@ First, install cookiecutter.
 Run
 
 ```
-cookiecutter https://github.com/FAIRmat-NFDI/pynxtools-plugin-template
+cookiecutter gh:FAIRmat-NFDI/pynxtools-plugin-template
 ```
 
 - Write your reader
