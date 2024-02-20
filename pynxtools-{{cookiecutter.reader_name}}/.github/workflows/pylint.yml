@@ -24,10 +24,10 @@ jobs:
           python -m pip install -r dev-requirements.txt
       - name: ruff
         run: |
-          ruff pynxtools tests
+          ruff pynxtools_{{cookiecutter.reader_name}} tests
       - name: ruff formatting
         run: |
-          ruff format --check pynxtools_mpes tests
+          ruff format --check pynxtools_{{cookiecutter.reader_name}} tests
       - name: mypy
         run: |
-          mypy pynxtools_mpes tests
+          mypy pynxtools_{{cookiecutter.reader_name}} tests
