@@ -11,5 +11,6 @@
         "GPL-3.0-or-later",
         "MIT"
     ],
-    "github_workflows": true
+    "github_workflows": true,
+    "vscode_settings": true
 }

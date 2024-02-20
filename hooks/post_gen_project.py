@@ -10,3 +10,6 @@ def remove(filepath):
 
 if not {{cookiecutter.github_workflows}}:
     remove('.github')
+
+if not {{cookiecutter.vscode_settings}}:
+    remove('.vscode')
