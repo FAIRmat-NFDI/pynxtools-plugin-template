@@ -36,5 +36,14 @@ dependencies = [
     "pynxtools>=0.0.10"
 ]
 
+[project.optional-dependencies]
+dev = [
+    "mypy",
+    "ruff",
+    "pytest",
+    "types-pyyaml",
+    "pip-tools",
+]
+
 [project.entry-points."pynxtools.reader"]
 {{cookiecutter.reader_name}} = "pynxtools_{{cookiecutter.reader_name}}.reader:{{cookiecutter.class_name}}"

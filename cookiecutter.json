@@ -10,5 +10,6 @@
         "BSD-4-Clause",
         "GPL-3.0-or-later",
         "MIT"
-    ]
+    ],
+    "github_workflows": true
 }
