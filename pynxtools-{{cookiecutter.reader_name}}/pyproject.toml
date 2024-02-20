@@ -10,7 +10,7 @@ build-backend = "setuptools.build_meta"
 } %}
 
 [project]
-name = "pynxtools_{{cookiecutter.reader_name}}"
+name = "pynxtools-{{cookiecutter.reader_name}}"
 dynamic = ["version"]
 authors = [
     { name = "{{cookiecutter.author_name}}", email = "{{cookiecutter.author_email}}" },
@@ -20,18 +20,20 @@ readme = "README.md"
 {%- if cookiecutter.license in license_classifiers %}
 license="{{ cookiecutter.license }}",
 {%- endif %}
-requires-python = ">=3.8,<3.11"
+requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
 {%- if cookiecutter.license in license_classifiers %}
     "{{ license_classifiers[cookiecutter.license] }}",
 {%- endif %}
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "pynxtools>=0.0.9"
+    "pynxtools>=0.0.10"
 ]
 
 [project.entry-points."pynxtools.reader"]
