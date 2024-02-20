@@ -48,6 +48,10 @@ dev = [
 [project.entry-points."pynxtools.reader"]
 {{cookiecutter.reader_name}} = "pynxtools_{{cookiecutter.reader_name}}.reader:{{cookiecutter.class_name}}"
 
+[tool.setuptools_scm]
+version_scheme = "no-guess-dev"
+local_scheme = "node-and-date"
+
 [tool.ruff]
 include = ["pynxtools/*.py", "tests/*.py"]
 select = [
