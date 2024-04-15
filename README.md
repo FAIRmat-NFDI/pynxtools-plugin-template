@@ -12,5 +12,6 @@ cookiecutter gh:FAIRmat-NFDI/pynxtools-plugin-template
 ```
 
 - Write your reader
-- Provide example data for the test
+- Add simple examples including input files, and output file for indivisual example case in examples/<example>
+- Provide example data for plugin
 - Publish
