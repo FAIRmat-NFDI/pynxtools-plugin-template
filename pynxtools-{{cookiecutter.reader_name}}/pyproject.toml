@@ -43,6 +43,7 @@ dev = [
     "pytest",
     "types-pyyaml",
     "pip-tools",
+    "pre-commit",
 ]
 
 [project.entry-points."pynxtools.reader"]
