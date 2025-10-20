@@ -2,13 +2,6 @@
 requires = ["setuptools>=78.1.1", "setuptools-scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
-{%- set license_classifiers = {
-    'MIT': 'License :: OSI Approved :: MIT License',
-    'BSD-4-Clause': 'License :: OSI Approved :: BSD License',
-    'Apache-2.0': 'License :: OSI Approved :: Apache Software License',
-    'GPL-3.0-or-later': 'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
-} %}
-
 [project]
 name = "pynxtools-{{cookiecutter.reader_name}}"
 dynamic = ["version"]
@@ -17,18 +10,14 @@ authors = [
 ]
 description = "{{cookiecutter.description}}"
 readme = "README.md"
-{%- if cookiecutter.license in license_classifiers %}
-license= {text = "{{ cookiecutter.license }}"}
-{%- endif %}
+license = { file = "LICENSE" }
 requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
-{%- if cookiecutter.license in license_classifiers %}
-    "{{ license_classifiers[cookiecutter.license] }}",
-{%- endif %}
+    "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent",
 ]
 dependencies = [
