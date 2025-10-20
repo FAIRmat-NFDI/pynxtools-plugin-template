@@ -1,6 +1,6 @@
 #!/bin/bash
 READER={{cookiecutter.reader_name}}
-NXDL={{cookiecutter.class_name}}
+NXDL={{cookiecutter.supported_nxdls}}
 
 project_dir=$(dirname $(dirname $(realpath $0)))
 cd $project_dir/tests/data

@@ -35,7 +35,7 @@ from pynxtools.testing.nomad_example import (
 )
 
 # from pynxtools_xps.nomad import xps_example
-from pynxtools_{{cookiecutter.reader_name}}.nomad import {{cookiecutter.class_name}}
+from pynxtools_{{cookiecutter.reader_name}}.nomad import {{cookiecutter.reader_class}}
 
 
 EXAMPLE_PATH = os.path.join(

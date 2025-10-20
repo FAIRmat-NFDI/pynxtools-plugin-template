@@ -2,7 +2,7 @@ from typing import Any, Tuple
 
 from pynxtools.dataconverter.readers.base.reader import BaseReader
 
-class {{cookiecutter.class_name}}(BaseReader):
+class {{cookiecutter.reader_class}}(BaseReader):
     """
     Reader for my method....
     PLEASE UPDATE
@@ -22,4 +22,4 @@ class {{cookiecutter.class_name}}(BaseReader):
         return template
 
 
-READER = {{cookiecutter.class_name}}
+READER = {{cookiecutter.reader_class}}
