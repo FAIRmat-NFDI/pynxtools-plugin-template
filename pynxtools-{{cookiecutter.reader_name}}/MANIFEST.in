@@ -1,0 +1,5 @@
+prune *
+exclude *
+recursive-include src/pynxtools_{{cookiecutter.reader_name}} *.py *.json
+include pyproject.toml README.md
+graft src/pynxtools_{{cookiecutter.reader_name}}/nomad/examples
