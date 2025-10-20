@@ -24,7 +24,7 @@ except ImportError as exc:
         "Could not import nomad package. Please install the package 'nomad-lab'."
     ) from exc
 
-xps_example = ExampleUploadEntryPoint(
+{{cookiecutter.nomad_example}} = ExampleUploadEntryPoint(
     title="",
     category="NeXus Experiment Examples",
     description="""""",

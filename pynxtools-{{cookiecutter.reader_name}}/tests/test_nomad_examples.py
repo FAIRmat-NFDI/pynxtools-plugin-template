@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-"""Test for NOMAD examples in XPS reader plugin."""
+"""Tests for the NOMAD examples."""
 
 import os
 import pytest
@@ -34,9 +34,7 @@ from pynxtools.testing.nomad_example import (
     parse_nomad_examples,
 )
 
-# from pynxtools_xps.nomad import xps_example
-from pynxtools_{{cookiecutter.reader_name}}.nomad import {{cookiecutter.reader_class}}
-
+from pynxtools_{{cookiecutter.reader_name}}.nomad import {{cookiecutter.nomad_example}}
 
 EXAMPLE_PATH = os.path.join(
     os.path.dirname(__file__),
@@ -61,9 +59,9 @@ def test_parse_nomad_examples(mainfile):
     ("entrypoint", "example_path"),
     [
         pytest.param(
-            xps_example,
+            {{cookiecutter.nomad_example}},
             EXAMPLE_PATH,
-            id="xps_example",
+            id=str({{cookiecutter.nomad_example}),
         ),
     ],
 )
