@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=64.0.1", "setuptools-scm[toml]>=6.2"]
+requires = ["setuptools>=78.1.1", "setuptools-scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
 {%- set license_classifiers = {
@@ -20,34 +20,52 @@ readme = "README.md"
 {%- if cookiecutter.license in license_classifiers %}
 license= {text = "{{ cookiecutter.license }}"}
 {%- endif %}
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 classifiers = [
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 {%- if cookiecutter.license in license_classifiers %}
     "{{ license_classifiers[cookiecutter.license] }}",
 {%- endif %}
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "pynxtools>=0.0.10"
+    "pynxtools>=0.12.0"
 ]
 
 [project.optional-dependencies]
 dev = [
     "mypy",
-    "ruff==0.3.4",
+    "ruff>=0.14.0",
     "pytest",
+    "pytest-cov",
+    "pytest-timeout",
     "types-pyyaml",
-    "pip-tools",
+    "types-pytz",
+    "types-requests",
     "pre-commit",
 ]
+docs = [
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocs-material-extensions",
+    "mkdocs-macros-plugin",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/FAIRmat-NFDI/pynxtools-{{cookiecutter.reader_name}}"
+"Bug Tracker" = "https://github.com/FAIRmat-NFDI/pynxtools-{{cookiecutter.reader_name}}/issues"
 
 [project.entry-points."pynxtools.reader"]
 {{cookiecutter.reader_name}} = "pynxtools_{{cookiecutter.reader_name}}.reader:{{cookiecutter.class_name}}"
+#{{cookiecutter.reader_name}}_example = "pynxtools_{{cookiecutter.reader_name}}.nomad:{{cookiecutter.reader_name}}_example"
+
+[tool.setuptools.packages.find]
+where = [
+    "src",
+]
 
 [tool.setuptools_scm]
 version_scheme = "no-guess-dev"
@@ -63,6 +81,7 @@ select = [
     "E", # pycodestyle
     "W", # pycodestyle
     "PL", # pylint
+    "NPY201", # upgrade numpy v2
 ]
 ignore = [
     "E501", # Line too long ({width} > {limit} characters)
