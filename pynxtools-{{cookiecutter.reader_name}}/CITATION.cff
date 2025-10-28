@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: 'pynxtools-{{cookiecutter.reader_name}}: A pynxtools plugin'
+title: '{{cookiecutter.__package_name}}: A pynxtools plugin'
 message: >-
   If you use this software, please cite it using the
   metadata from this file.
@@ -9,10 +9,10 @@ authors:
   - given-names:
     family-names:
 doi: ''
-repository-code: 'https://github.com/FAIRmat-NFDI/pynxtools-{{cookiecutter.reader_name}}'
-url: 'https://fairmat-nfdi.github.io/pynxtools-{{cookiecutter.reader_name}}/'
+repository-code: 'https://github.com/FAIRmat-NFDI/{{cookiecutter.__package_name}}'
+url: 'https://fairmat-nfdi.github.io/{{cookiecutter.__package_name}}/'
 abstract:
-  The pynxtools-{{cookiecutter.reader_name}} package is a reader plugin of pynxtools (https://github.com/FAIRmat-NFDI/pynxtools).
+  The {{cookiecutter.__package_name}} package is a reader plugin of pynxtools (https://github.com/FAIRmat-NFDI/pynxtools).
   The work is funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) - 460197019
   (FAIRmat) (https://gepris.dfg.de/gepris/projekt/460197019?language=en).
 license: Apache-2.0

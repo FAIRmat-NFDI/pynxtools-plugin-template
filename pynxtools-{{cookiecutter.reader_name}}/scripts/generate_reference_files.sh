@@ -1,6 +1,6 @@
 #!/bin/bash
 READER={{cookiecutter.reader_name}}
-NXDL={{cookiecutter.supported_nxdls}}
+NXDL={{cookiecutter.supported_nxdl}}
 
 project_dir=$(dirname $(dirname $(realpath $0)))
 cd $project_dir/tests/data
@@ -20,7 +20,7 @@ folders=(
   ""
 )
 
-nxdls={{cookiecutter.supported_nxdls}}
+nxdls={{cookiecutter.supported_nxdl}}
 
 for folder in "${folders[@]}"; do
   for nxdl in "${nxdls[@]}"; do

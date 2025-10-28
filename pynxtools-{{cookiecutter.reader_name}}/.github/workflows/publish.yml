@@ -12,17 +12,17 @@ jobs:
     name: Checkout and Install
     runs-on: ubuntu-latest
     outputs:
-      git_tag_version: ${{ steps.git_tag_version.outputs.version }}
-      citation_version: ${{ steps.citation_version.outputs.version }}
+      git_tag_version: {% raw %}${{ steps.git_tag_version.outputs.version }}{% endraw %}
+      citation_version: {% raw %}${{ steps.citation_version.outputs.version }}{% endraw %}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           submodules: recursive
-      - name: Install uv and set the python version to ${{ env.python-version }}
+      - name: Install uv and set the python version to {% raw %}$${{ env.python-version }}{% endraw %}
         uses: astral-sh/setup-uv@v5
         with:
-          python-version: ${{ env.python-version }}
+          python-version: {% raw %}$${{ env.python-version }}{% endraw %}
       - name: Git tag version
         id: git_tag_version
         run: |
@@ -43,14 +43,14 @@ jobs:
         with:
           fetch-depth: 0
           submodules: recursive
-      - name: Install uv and set the python version to ${{ env.python-version }}
+      - name: Install uv and set the python version to {% raw %}${{ env.python-version }}{% endraw %}
         uses: astral-sh/setup-uv@v5
         with:
-          python-version: ${{ env.python-version }}
+          python-version: {% raw %}${{ env.python-version }}{% endraw %}
       - name: Install latest nomad release
         run: |
           uv pip install nomad-lab[infrastructure]
-      - name: Install pynxtools-{{cookiecutter.reader_name}}
+      - name: Install {{cookiecutter.__package_name}}
         run: |
           uv pip install -e ".[dev]"
       - name: Install latest pynxtools release
@@ -66,8 +66,8 @@ jobs:
     steps:
       - name: Fail if versions mismatch
         run: |
-          if [ "${{ needs.setup.outputs.git_tag_version }}" != "${{ needs.setup.outputs.citation_version }}" ]; then
-            echo "Version mismatch: Git tag is ${{ needs.setup.outputs.git_tag_version }}, CITATION.cff is ${{ needs.setup.outputs.citation_version }}"
+          if [ {% raw %}"${{ needs.setup.outputs.git_tag_version }}"{% endraw %}  != {% raw %}"${{ needs.setup.outputs.citation_version }}"{% endraw %} ]; then
+            echo "Version mismatch: Git tag is {% raw %}${{ needs.setup.outputs.git_tag_version }}{% endraw %}, CITATION.cff is {% raw %}${{ needs.setup.outputs.citation_version }}{% endraw %}"
             exit 1
           fi
 
@@ -80,10 +80,10 @@ jobs:
         with:
           fetch-depth: 0
           submodules: recursive
-      - name: Install uv and set the python version to ${{ env.python-version }}
+      - name: Install uv and set the python version to {% raw %}${{ env.python-version }}{% endraw %}
         uses: astral-sh/setup-uv@v5
         with:
-          python-version: ${{ env.python-version }}
+          python-version: {% raw %}${{ env.python-version }}{% endraw %}
       - name: Build package
         run: uv build
       - name: Upload dist artifacts
@@ -98,7 +98,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/p/pynxtools-{{cookiecutter.reader_name}}
+      url: https://pypi.org/p/{{cookiecutter.__package_name}}
     permissions:
       id-token: write
     steps:

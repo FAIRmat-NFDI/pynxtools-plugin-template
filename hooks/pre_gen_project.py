@@ -8,11 +8,9 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger("pre_gen_project")
 
 
-plugin_name = "{{cookiecutter.plugin_name}}"
-
 MODULE_REGEX = r"^[a-z][_a-z0-9]+$"
 
-module_name = "{{cookiecutter.module_name}}"
+module_name = "pynxtools_{{cookiecutter.reader_name}}"
 
 if not re.match(MODULE_REGEX, module_name):
     link = "https://www.python.org/dev/peps/pep-0008/#package-and-module-names"

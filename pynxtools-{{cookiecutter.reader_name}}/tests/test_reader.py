@@ -23,7 +23,7 @@ import pytest
 from pynxtools.dataconverter.convert import get_reader
 from pynxtools.testing.nexus_conversion import ReaderTest
 
-READER_NAME = {{cookiecutter.reader_name}}
+READER_NAME = "{{cookiecutter.reader_name}}"
 READER_CLASS = get_reader(READER_NAME)
 NXDLS = READER_CLASS.supported_nxdls
 
@@ -43,7 +43,11 @@ for test_case in test_cases:
     for nxdl in NXDLS:
         test_params += [
             pytest.param(
-                nxdl, test_case[0], test_case[1], test_case[2], id=f"{test_case[3]}-{nxdl.lower()}"
+                nxdl,
+                test_case[0],
+                test_case[1],
+                test_case[2],
+                id=f"{test_case[3]}-{nxdl.lower()}",
             )
         ]
 
@@ -52,11 +56,11 @@ for test_case in test_cases:
     "nxdl, sub_reader_data_dir, ignore_lines, ignore_sections",
     test_params,
 )
-
-
-def test_nexus_conversion(nxdl, sub_reader_data_dir, ignore_lines, ignore_sections, tmp_path, caplog):
+def test_nexus_conversion(
+    nxdl, sub_reader_data_dir, ignore_lines, ignore_sections, tmp_path, caplog
+):
     """
-    Test XPS reader
+    Test {{cookiecutter.__technique}} reader
 
     Parameters
     ----------
@@ -68,7 +72,7 @@ def test_nexus_conversion(nxdl, sub_reader_data_dir, ignore_lines, ignore_sectio
         conversion through one of the sub-readers. All of these data dirs
         are placed within tests/data/...
     ignore_lines: Dict[str, List[str]]
-        Lines within the log files to ignore.        
+        Lines within the log files to ignore.
     ignore_sections: Dict[str, List[str]]
         Subsections of the log files to ignore.
     tmp_path : pathlib.PosixPath
@@ -99,7 +103,5 @@ def test_nexus_conversion(nxdl, sub_reader_data_dir, ignore_lines, ignore_sectio
     )
     test.convert_to_nexus(caplog_level="WARNING", ignore_undocumented=True)
     test.check_reproducibility_of_nexus(
-        ignore_lines=ignore_lines,
-        ignore_sections=ignore_sections
+        ignore_lines=ignore_lines, ignore_sections=ignore_sections
     )
-

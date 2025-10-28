@@ -23,15 +23,15 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
      
-      - name: Install uv and set the python version to ${{ env.python-version }}
+      - name: Install uv and set the python version to {% raw %}${{ env.python-version }}{% endraw %}
         uses: astral-sh/setup-uv@v5
         with:
-          python-version: ${{ env.python-version }}
+          python-version: {% raw %}${{ env.python-version }}{% endraw %}
 
       - name: Cache mkdocs-material enviroment
         uses: actions/cache@v3
         with:
-          key: mkdocs-material-${{ env.cache_id }}
+          key: mkdocs-material-{% raw %}${{ env.python-cache_id }}{% endraw %}
           path: .cache
           restore-keys: |
             mkdocs-material-

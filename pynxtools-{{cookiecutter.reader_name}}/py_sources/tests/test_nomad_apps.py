@@ -15,19 +15,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-"""Entry points for XPS examples."""
+"""Tests for the NOMAD app."""
+
+import pytest
 
 try:
-    from nomad.config.models.plugins import ExampleUploadEntryPoint
-except ImportError as exc:
-    raise ImportError(
-        "Could not import nomad package. Please install the package 'nomad-lab'."
-    ) from exc
+    import nomad
+except ImportError:
+    pytest.skip(
+        "Skipping NOMAD app tests because nomad-lab is not installed",
+        allow_module_level=True,
+    )
 
-{{cookiecutter.nomad_example}} = ExampleUploadEntryPoint(
-    title="",
-    category="NeXus Experiment Examples",
-    description="""""",
-    plugin_package="pynxtools_{{cookiecutter.reader_name}}",
-    resources=["nomad/examples/*"],
-)
+
+def test_importing_app():
+    # this will raise an exception if pydantic model validation fails for the app
+    from {{cookiecutter.__module_name}}.nomad.apps import {{cookiecutter.__nomad_app}}  # noqa: PLC0415
+
+    assert app_entry_point.app.label == "{{cookiecutter.__technique}}"

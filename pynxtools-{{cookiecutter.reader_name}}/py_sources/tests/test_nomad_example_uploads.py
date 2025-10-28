@@ -34,13 +34,13 @@ from pynxtools.testing.nomad_example import (
     parse_nomad_examples,
 )
 
-from pynxtools_{{cookiecutter.reader_name}}.nomad import {{cookiecutter.nomad_example}}
+from {{cookiecutter.__module_name}}.nomad import {{cookiecutter.__nomad_example}}
 
 EXAMPLE_PATH = os.path.join(
     os.path.dirname(__file__),
     "..",
     "src",
-    f"pynxtools_{{cookiecutter.reader_name}}", # "pynxtools_xps,
+    f"{{cookiecutter.__module_name}}",
     "nomad",
     "examples",
 )
@@ -59,9 +59,9 @@ def test_parse_nomad_examples(mainfile):
     ("entrypoint", "example_path"),
     [
         pytest.param(
-            {{cookiecutter.nomad_example}},
+            {{cookiecutter.__nomad_example}},
             EXAMPLE_PATH,
-            id=str({{cookiecutter.nomad_example}),
+            id=str({{cookiecutter.__nomad_example}}),
         ),
     ],
 )

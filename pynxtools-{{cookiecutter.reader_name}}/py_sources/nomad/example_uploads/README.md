@@ -1,8 +1,8 @@
-# {{cookiecutter.reader_name}} example
+# {{cookiecutter.__technique}} example
 
 ## Introduction
 
-This example demonstrates how NOMAD can convert, standardize, and store data.
+This example demonstrates how NOMAD can convert, standardize, and store {{cookiecutter.__technique}} data.
 
 ## Viewing uploaded data
 

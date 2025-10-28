@@ -2,7 +2,7 @@
 hide: toc
 ---
 
-# Documentation for pynxtools-{{cookiecutter.reader_name}}
+# Documentation for {{cookiecutter.__package_name}}
 
 <div markdown="block" class="home-grid">
 <div markdown="block">
@@ -36,8 +36,8 @@ How-to guides provide step-by-step instructions for a wide range of tasks, with 
 
 For questions or suggestions:
 
-- Open an issue on the [`pynxtools` GitHub](https://github.com/FAIRmat-NFDI/pynxtools/issues)
-- Join our [Discord channel ](https://discord.gg/Gyzx3ukUw8)
+- Open an issue on the [`{{cookiecutter.__package_name}}` GitHub](https://github.com/FAIRmat-NFDI/{{cookiecutter.__package_name}}/issues)
+- Join our [Discord channel](https://discord.gg/Gyzx3ukUw8)
 - Get in contact with our [lead developers](contact.md).
 
 <h2>Project and community</h2>

@@ -1,16 +1,26 @@
 {
     "reader_name": "",
-    "class_name": "",
-    "description": "",
+    "supported_nxdl": "",
+    "short_description": "",
     "author_name": "",
     "author_email": "",
-    "supported_nxdl": "",
     "license": [
-        "Apache-2.0",
-        "BSD-4-Clause",
-        "GPL-3.0-or-later",
-        "MIT"
+        "Apache Software License 2.0",
+        "BSD-3",
+        "GNU GPL v3.0+",
+        "MIT",
+        "Mozilla Public License Version 2.0"
     ],
-    "github_workflows": true,
-    "vscode_settings": true
+    "vscode_settings": true,
+    "include_nomad_app": true,
+    "include_nomad_example_upload": true,
+    "__technique": "{{ cookiecutter.reader_name|upper }}",
+    "__reader_class": "{{ cookiecutter.__technique }}Reader",
+    "__package_name": "pynxtools-{{ cookiecutter.reader_name }}",
+    "__module_name": "pynxtools_{{ cookiecutter.reader_name }}",
+    "__nomad_example": "{{ cookiecutter.reader_name }}_example_upload_entry_point",
+    "__nomad_app": "{{ cookiecutter.reader_name }}_app_entry_point",
+    "_copy_without_render": [
+        "*.html"
+    ]
 }

@@ -15,3 +15,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+"""Entry points for XPS examples."""
+
+try:
+    from nomad.config.models.plugins import ExampleUploadEntryPoint
+except ImportError as exc:
+    raise ImportError(
+        "Could not import nomad package. Please install the package 'nomad-lab'."
+    ) from exc
+
+{{cookiecutter.__nomad_example}} = ExampleUploadEntryPoint(
+    title="",
+    category="NeXus Experiment Examples",
+    description="""""",
+    plugin_package="{{cookiecutter.__module_name}}",
+    resources=["nomad/examples/*"],
+)

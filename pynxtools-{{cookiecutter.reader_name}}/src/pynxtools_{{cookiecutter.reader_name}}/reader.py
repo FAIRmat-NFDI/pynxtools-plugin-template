@@ -2,13 +2,14 @@ from typing import Any
 
 from pynxtools.dataconverter.readers.base.reader import BaseReader
 
-class {{cookiecutter.reader_class}}(BaseReader):
+
+class {{cookiecutter.__reader_class}}(BaseReader):
     """
     Reader for my method....
     PLEASE UPDATE
     """
 
-    supported_nxdls = ["{{cookiecutter.supported_nxdls}}"]
+    supported_nxdls = ["{{cookiecutter.supported_nxdl}}"]
 
     def read(
         self,
@@ -22,4 +23,4 @@ class {{cookiecutter.reader_class}}(BaseReader):
         return template
 
 
-READER = {{cookiecutter.reader_class}}
+READER = {{cookiecutter.__reader_class}}

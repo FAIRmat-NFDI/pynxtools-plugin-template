@@ -6,8 +6,8 @@
 
 You will know
 
-- how to install `pynxtools-{{cookiecutter.reader_name}`
-- how to install `pynxtools-{{cookiecutter.reader_name}` together with NOMAD
+- how to install `{{cookiecutter.__package_name}}`
+- how to install `{{cookiecutter.__package_name}}` together with NOMAD
 
 ## Setup
 
@@ -40,14 +40,13 @@ Install the latest stable version of this package from PyPI with
 === "uv"
 
     ```bash
-    uv pip install pynxtools-{{cookiecutter.reader_name}
+    uv pip install {{cookiecutter.__package_name}}
     ```
 
 === "pip"
 
-
     ```bash
-    pip install pynxtools-{{cookiecutter.reader_name}
+    pip install {{cookiecutter.__package_name}}
     ```
 
 You can also install the latest _development_ version with
@@ -55,19 +54,19 @@ You can also install the latest _development_ version with
 === "uv"
 
     ```bash
-    uv pip install git+https://github.com/FAIRmat-NFDI/pynxtools-{{cookiecutter.reader_name}.git
+    uv pip install git+https://github.com/FAIRmat-NFDI/{{cookiecutter.__package_name}}.git
     ```
 
 === "pip"
 
     ```bash
-    pip install git+https://github.com/FAIRmat-NFDI/pynxtools-{{cookiecutter.reader_name}.git
+    pip install git+https://github.com/FAIRmat-NFDI/{{cookiecutter.__package_name}}.git
     ```
 
-### How to install `pynxtools-{{cookiecutter.reader_name}` with NOMAD
+### How to install `{{cookiecutter.__package_name}}` with NOMAD
 
-To use `pynxtools-{{cookiecutter.reader_name}` with NOMAD, simply install it in the same environment as the `nomad-lab` package. NOMAD will recognize `pynxtools-{{cookiecutter.reader_name}` as a plugin automatically. In addition, NOMAD will install a schema for NeXus application definitions.
+To use `{{cookiecutter.__package_name}}` with NOMAD, simply install it in the same environment as the `nomad-lab` package. NOMAD will recognize `{{cookiecutter.__package_name}}` as a plugin automatically. In addition, NOMAD will install a schema for NeXus application definitions.
 
-## Start using `pynxtools-{{cookiecutter.reader_name}`
+## Start using `{{cookiecutter.__package_name}}`
 
-That's it! You can now use `pynxtools-{{cookiecutter.reader_name}`!
+That's it! You can now use `{{cookiecutter.__package_name}}`!

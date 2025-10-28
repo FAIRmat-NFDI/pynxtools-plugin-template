@@ -1,8 +1,8 @@
-site_name: pynxtools-{{cookiecutter.reader_name}
+site_name: {{cookiecutter.__package_name}}
 site_description: |
-  The documentation for the pynxtools-{{cookiecutter.reader_name} plugin
+  The documentation for the {{cookiecutter.__package_name}} plugin
 site_author: The FAIRmat authors
-repo_url: https://github.com/FAIRmat-NFDI/pynxtools-{{cookiecutter.reader_name}
+repo_url: https://github.com/FAIRmat-NFDI/{{cookiecutter.__package_name}}
 nav:
   - Home: index.md
   - Tutorials:
