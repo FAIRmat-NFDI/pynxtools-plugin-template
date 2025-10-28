@@ -1,8 +1,9 @@
-from typing import Any, Tuple
+from typing import Any
 
 from pynxtools.dataconverter.readers.base.reader import BaseReader
 
-class {{cookiecutter.class_name}}(BaseReader):
+
+class {{cookiecutter.__reader_class}}(BaseReader):
     """
     Reader for my method....
     PLEASE UPDATE
@@ -12,9 +13,9 @@ class {{cookiecutter.class_name}}(BaseReader):
 
     def read(
         self,
-        template: dict = None,
-        file_paths: Tuple[str] = None,
-        objects: Tuple[Any] = None,
+        template: dict | None = None,
+        file_paths: tuple[str] | None = None,
+        objects: tuple[Any] | None = None,
     ):
         """
         General read menthod to prepare the template.
@@ -22,4 +23,4 @@ class {{cookiecutter.class_name}}(BaseReader):
         return template
 
 
-READER = {{cookiecutter.class_name}}
+READER = {{cookiecutter.__reader_class}}

@@ -1,0 +1,34 @@
+name: Run checks
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+"
+      - "[0-9]+.[0-9]+.[0-9]+rc[0-9]+"
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  tox:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-14]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+      - name: Install Homebrew libmagic
+        if: runner.os == 'macOS'
+        run: brew install libmagic
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+      - name: Run tox
+        run: |
+          uv run --with pytest --with pytest-cookies --with tox-uv pytest tests/

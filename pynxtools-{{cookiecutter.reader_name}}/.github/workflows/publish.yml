@@ -4,27 +4,112 @@ on:
   release:
     types: [published]
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+env:
+  python-version: 3.12
 
+jobs:
+  setup:
+    name: Checkout and Install
+    runs-on: ubuntu-latest
+    outputs:
+      git_tag_version: {% raw %}${{ steps.git_tag_version.outputs.version }}{% endraw %}
+      citation_version: {% raw %}${{ steps.citation_version.outputs.version }}{% endraw %}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           submodules: recursive
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Install uv and set the python version to {% raw %}$${{ env.python-version }}{% endraw %}
+        uses: astral-sh/setup-uv@v5
         with:
-          python-version: "3.x"
-      - name: Install dependencies
+          python-version: {% raw %}$${{ env.python-version }}{% endraw %}
+      - name: Git tag version
+        id: git_tag_version
         run: |
-          python -m pip install --upgrade pip
-          pip install build
-      - name: Build package
-        run: python -m build
-      - name: Publish package
-        uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
+          GIT_TAG_VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$GIT_TAG_VERSION" >> "$GITHUB_OUTPUT"
+      - name: Citation version
+        id: citation_version
+        run: |
+          CITATION_VERSION=$(grep '^version:' CITATION.cff | cut -d' ' -f2)
+          echo "version=$CITATION_VERSION" >> "$GITHUB_OUTPUT"
+
+  test:
+    name: Run Tests
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
         with:
-          user: __token__
-          password: {{ "${{" }} secrets.PYPI_API_TOKEN {{ "}}" }}
+          fetch-depth: 0
+          submodules: recursive
+      - name: Install uv and set the python version to {% raw %}${{ env.python-version }}{% endraw %}
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: {% raw %}${{ env.python-version }}{% endraw %}
+      - name: Install latest nomad release
+        run: |
+          uv pip install nomad-lab[infrastructure]
+      - name: Install {{cookiecutter.__package_name}}
+        run: |
+          uv pip install -e ".[dev]"
+      - name: Install latest pynxtools release
+        run: |
+          uv pip install pynxtools
+      - name: Test with pytest
+        run: pytest tests/
+
+  compare-versions:
+    name: Compare Versions
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if versions mismatch
+        run: |
+          if [ {% raw %}"${{ needs.setup.outputs.git_tag_version }}"{% endraw %}  != {% raw %}"${{ needs.setup.outputs.citation_version }}"{% endraw %} ]; then
+            echo "Version mismatch: Git tag is {% raw %}${{ needs.setup.outputs.git_tag_version }}{% endraw %}, CITATION.cff is {% raw %}${{ needs.setup.outputs.citation_version }}{% endraw %}"
+            exit 1
+          fi
+
+  build:
+    name: Build Package
+    needs: [compare-versions, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+      - name: Install uv and set the python version to {% raw %}${{ env.python-version }}{% endraw %}
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: {% raw %}${{ env.python-version }}{% endraw %}
+      - name: Build package
+        run: uv build
+      - name: Upload dist artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-artifacts
+          path: dist/
+
+  deploy:
+    name: Upload to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/{{cookiecutter.__package_name}}
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+      - name: Download dist artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-artifacts
+          path: dist/
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
