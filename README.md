@@ -1,16 +1,139 @@
 # pynxtools-plugin-template
-A cookiecutter template for creating pynxtools plugins
 
+A cookiecutter template for creating a [`pynxtools`](https://github.com/FAIRmat-NFDI/pynxtools) reader plugin.
 
-# How to
-First, install cookiecutter.
+## Getting started
 
-Run
+Install [cruft](https://cruft.github.io/cruft/#installation) and cookiecutter.
 
+  === "uv"
+
+      ```bash
+      uv pip install cruft cookiecutter
+      ```
+
+  === "pip"
+  
+      ```bash
+      pip install cruft cookiecutter
+      ```
+
+## New projects
+
+Run the following command to create a new `pynxtools` plugin project using pynxtools-plugin-template:
+
+    === "https"
+
+      ```bash
+      cruft create https://github.com/FAIRmat-NFDI/pynxtools-plugin-template.git
+      ```
+
+  === "ssh"
+  
+      ```bash
+      cruft create git@github.com:FAIRmat-NFDI/pynxtools-plugin-template.git
+      ```
+
+  === "GitHub CLI"
+  
+      ```bash
+      cruft create gh:FAIRmat-NFDI/pynxtools-plugin-template.git
+      ```
+
+## Existing projects
+
+You can also link existing `pynxtools` plugin project to pynxtools-plugin-template using `cruft`:
+
+    === "https"
+
+      ```bash
+      cruft link https://github.com/FAIRmat-NFDI/pynxtools-plugin-template.git
+      ```
+
+  === "ssh"
+  
+      ```bash
+      cruft link git@github.com:FAIRmat-NFDI/pynxtools-plugin-template.git
+      ```
+
+  === "GitHub CLI"
+  
+      ```bash
+      cruft link gh:FAIRmat-NFDI/pynxtools-plugin-template.git
+      ```
+
+## Cookiecutter input
+
+Cookiecutter prompts you for information regarding your plugin:
+
+```no-highlight
+  [1/9] reader_name (): test
+  [2/9] supported_nxdl (): NXtest
+  [3/9] short_description (): My pynxtools test plugin
+  [4/9] author_name (): John Doe
+  [5/9] author_email (): name.surname@ohysik.hu-berlin.de
+  [6/9] Select license
+    1 - Apache Software License 2.0
+    2 - BSD-3
+    3 - GNU GPL v3.0+
+    4 - MIT
+    5 - Mozilla Public License Version 2.0
+    Choose from [1/2/3/4/5] (1): 1
+  [7/9] vscode_settings [y/n] (y): y
+  [8/9] include_nomad_app [y/n] (y): y
+  [9/9] include_nomad_example_upload [y/n] (y): y
+INFO:post_gen_project:Copied py_sources/nomad/README.md → /home/lukaspie/fairmat/pynxtools-plugin-template/pynxtools-test/src/pynxtools_test/nomad/README.md
+INFO:post_gen_project:Copied py_sources/nomad/__init__.py → /home/lukaspie/fairmat/pynxtools-plugin-template/pynxtools-test/src/pynxtools_test/nomad/__init__.py
+INFO:post_gen_project:Moving example_uploads files to /home/lukaspie/fairmat/pynxtools-plugin-template/pynxtools-test/src/pynxtools_test/nomad/example_uploads
+INFO:post_gen_project:py_sources/nomad/example_uploads
+INFO:post_gen_project:py_sources/nomad/example_uploads/README.md
+INFO:post_gen_project:py_sources/nomad/example_uploads/__init__.py
+INFO:post_gen_project:Copied test py_sources/tests/test_nomad_apps.py → /home/lukaspie/fairmat/pynxtools-plugin-template/pynxtools-test/tests/test_nomad_apps.py
+INFO:post_gen_project:Copied test py_sources/tests/test_nomad_example_uploads.py → /home/lukaspie/fairmat/pynxtools-plugin-template/pynxtools-test/tests/test_nomad_example_uploads.py
+INFO:post_gen_project:Moving apps files to /home/lukaspie/fairmat/pynxtools-plugin-template/pynxtools-test/src/pynxtools_test/nomad/apps
+INFO:post_gen_project:py_sources/nomad/apps
+INFO:post_gen_project:py_sources/nomad/apps/__init__.py
+INFO:post_gen_project:Copied test py_sources/tests/test_nomad_apps.py → /home/lukaspie/fairmat/pynxtools-plugin-template/pynxtools-test/tests/test_nomad_apps.py
+INFO:post_gen_project:Copied test py_sources/tests/test_nomad_example_uploads.py → /home/lukaspie/fairmat/pynxtools-plugin-template/pynxtools-test/tests/test_nomad_example_uploads.py
+INFO:post_gen_project:Removing temporary folder: licenses
+INFO:post_gen_project:Removing temporary folder: py_sources
 ```
-cookiecutter gh:FAIRmat-NFDI/pynxtools-plugin-template
+
+There you go - you just created a minimal `pynxtools` plugin.
+
+> [!NOTE]
+> In the above prompt, we pressed `y` for NOMAD `apps` and `example_uploads`. This creates two plugin entry points for [`nomad`](https://nomad-lab.eu/): one for a NOMAD app and one for an example upload. This also means that your package becomes a package for the `nomad-lab` package. If installed together, the plugin entry points are detected automatically and can be used directly within NOMAD.
+
+## Staying up to date
+
+We are regularly updating this template with new functionality. To stay up to date, you can run
+
+```bash
+cruft update
 ```
 
-- Write your reader
-- Provide example data for the test
-- Publish
+after you have initiated the cruft link.
+
+There is also a GitHub workflow that automatically creates a pull request in your repository if the template has changed (for this to work, your organization must allow automated pull request.)
+
+## Git
+
+The cookiecutter template will only create the structure of the repository. We recommend using Git for code versioning. After the cruft creation, run
+
+```bash
+git init
+git add -A
+git commit -m "initial commit"
+```
+
+to initialize the repository structure. If your repository is published to GitHub, this also enables the previously mentioned automated update in the Github Actions.
+
+## What you should implement
+
+The cookiecutter template only creates the basic structure of the repository. In order to have a useful package, there are multiple topics you should address.
+
+- **Write your reader**: In `pynxtoosl-PLUGIN/src/pynxtoos_PLUGIN/reader.py` (where `PLUGIN` is the `cookiecutter.reader_name`), you will find an empty reader. You should implement the reader to parse data from your technique.
+- **Provide test data**: In `pynxtoosl-PLUGIN/`, you will find standardized tests using the `pynxtools.testing` module. You should add data in `tests/data` that your reader can convert to the chosen application definition. For each test case, a new folder shall be createad within `tests/data`. In this folder, there should also be a reference NeXus file for comparison in the tests. You can add the name of the folders to the `scripts/generate_reference_files.sh` script to be able to automatically create the reference test file when your reader changes.
+- **Documentation**: There is a `mkdocs` template available in the `docs` folder. You should add to the documentation (keeping to the [Diátaxis](https://diataxis.fr/) framework).
+- **NOMAD integration**: If you choose to use a NOMAD entry plugin point during package creation with cookiecutter, you should implement these entry points. You can learn more about these entry points in the [NOMAD documentation](https://nomad-lab.eu/prod/v1/docs/howto/plugins/plugins.html).
+- **Publish**: Once your reader plugin is working, you should create a release on GitHub. Once a NOMAD release exists, the package is automatically published in PyPI (provided you have added a PyPI access token in your repository). For publication to Zenodo, it is also important to fill out the `CITATION.cff` file.

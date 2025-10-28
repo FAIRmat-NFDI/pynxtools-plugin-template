@@ -10,6 +10,7 @@ hide: toc
 ### Tutorial
 
 - [Installation guide](tutorial/installation.md)
+- [Development guide](tutorial/contributing.md)
 
 </div>
 <div markdown="block">

@@ -7,6 +7,7 @@ nav:
   - Home: index.md
   - Tutorials:
     - tutorial/installation.md
+    - tutorial/contributing.md
   # - How-tos:
   #   - how-tos/how-to.md
   # - Learn:
