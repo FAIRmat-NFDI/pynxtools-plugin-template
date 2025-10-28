@@ -1,5 +1,8 @@
 name: Run checks
 
+env:
+  python-version: 3.12
+
 on:
   push:
     branches:
@@ -21,14 +24,15 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-14]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Install uv and set the python version to ${{ matrix.python-version }}
+        uses: astral-sh/setup-uv@v5
         with:
-          python-version: 3.11
+          python-version: ${{ matrix.python-version }}
       - name: Install Homebrew libmagic
         if: runner.os == 'macOS'
         run: brew install libmagic
       - name: Install uv
-        uses: astral-sh/setup-uv@v2
+        uses: astral-sh/setup-uv@v5
       - name: Run tox
         run: |
           uv run --with pytest --with pytest-cookies --with tox-uv pytest tests/
