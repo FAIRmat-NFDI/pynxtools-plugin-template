@@ -1,10 +1,10 @@
 cff-version: 1.2.0
-title: '{{cookiecutter.__package_name}}: A pynxtools plugin'
-message: >-
+title: '{{cookiecutter.__package_name}}: {{cookiecutter.short_description}}'
+version: 0.1.0
+message:
   If you use this software, please cite it using the
   metadata from this file.
 type: software
-version: 0.1.0
 authors:
   - given-names:
     family-names:

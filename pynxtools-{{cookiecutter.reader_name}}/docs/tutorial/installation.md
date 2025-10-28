@@ -2,8 +2,6 @@
 
 ## What should you should know before this tutorial?
 
-## What you will know at the end of this tutorial?
-
 You will know
 
 - how to install `{{cookiecutter.__package_name}}`

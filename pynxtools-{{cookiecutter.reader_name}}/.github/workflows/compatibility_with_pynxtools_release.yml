@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        pynxtools_versions: ["latest"]
+        pynxtools-versions: ["latest"]
 
     steps:
       - uses: actions/checkout@v4
@@ -26,19 +26,19 @@ jobs:
         uses: astral-sh/setup-uv@v5
         with:
           python-version: {% raw %}${{ env.python-version }}{% endraw %}
-      - name: Install pynxtools-raman
+      - name: Install {{ cookiecutter.__package_name }}
         run: |
           uv pip install ".[dev]"
           uv pip install coverage coveralls
       - name: Install nomad
         run: |
           uv pip install nomad-lab[infrastructure]@git+https://gitlab.mpcdf.mpg.de/nomad-lab/nomad-FAIR.git
-      - name: Install pynxtools release version {% raw %}${{ matrix.pynxtools-version }}{% endraw %}
+      - name: Install pynxtools release version {% raw %}${{ matrix.pynxtools-versions }}{% endraw %}
         run: |
-          if [ {% raw %}"${{ matrix.pynxtools-version }}"{% endraw %} == "latest" ]; then
+          if [ {% raw %}"${{ matrix.pynxtools-versions }}"{% endraw %} == "latest" ]; then
             uv pip install pynxtools
           else
-           uv pip install pynxtools=={% raw %}"${{ matrix.pynxtools-version }}"{% endraw %}
+           uv pip install pynxtools=={% raw %}${{ matrix.pynxtools-versions }}{% endraw %}
           fi
       - name: Run tests
         run: |
