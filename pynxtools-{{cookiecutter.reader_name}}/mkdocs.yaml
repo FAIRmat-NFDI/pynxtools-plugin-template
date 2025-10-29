@@ -1,8 +1,10 @@
-site_name: {{cookiecutter.__package_name}}
+site_name: Documentation for {{cookiecutter.__package_name}}
 site_description: |
   The documentation for the {{cookiecutter.__package_name}} plugin
 site_author: The FAIRmat authors
 repo_url: https://github.com/FAIRmat-NFDI/{{cookiecutter.__package_name}}
+edit_uri: ""
+
 nav:
   - Home: index.md
   - Tutorials:
@@ -51,6 +53,7 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.emoji
+  - mkdocs-click
   - pymdownx.extra
   - pymdownx.tabbed:
       alternate_style: true

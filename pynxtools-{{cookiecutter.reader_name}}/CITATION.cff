@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: '{{cookiecutter.__package_name}}: {{cookiecutter.short_description}}'
+title: '{{cookiecutter.__package_name}}
 version: 0.1.0
 message:
   If you use this software, please cite it using the
