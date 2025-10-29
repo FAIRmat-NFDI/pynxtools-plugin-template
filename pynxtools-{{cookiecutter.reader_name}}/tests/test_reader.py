@@ -18,6 +18,7 @@
 """Tests for the pynxtools reader plugin."""
 
 import os
+from typing import Any, Literal
 
 import pytest
 from pynxtools.dataconverter.convert import get_reader
@@ -28,17 +29,15 @@ READER_CLASS = get_reader(READER_NAME)
 NXDLS = READER_CLASS.supported_nxdls
 
 # Define lines/sections to be ignored in _all_ test cases
-ignore_lines_all_tests: list = [
-    "DEBUG - value: 20",
-]
+ignore_lines_all_tests: list = []
 ignore_sections_all_tests: dict = {}
 
-
-test_cases = [
+# Test cases should be [("folder", ignore_lines, ignore_sections, "test-id")]
+test_cases: list[tuple[str, list[Any], dict[Any, Any], str]] = [
     ("folder", [], {}, "test-id"),
 ]
 
-test_params = []
+test_params: list[Any] = []
 for test_case in test_cases:
     for nxdl in NXDLS:
         test_params += [
@@ -87,6 +86,8 @@ def test_nexus_conversion(
     None.
 
     """
+    caplog.clear()
+
     files_or_dir = os.path.join(
         *[os.path.dirname(__file__), "data", sub_reader_data_dir]
     )

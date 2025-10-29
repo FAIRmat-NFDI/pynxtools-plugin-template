@@ -22,10 +22,7 @@ from pynxtools.dataconverter.readers.base.reader import BaseReader
 
 
 class {{cookiecutter.__reader_class}}(BaseReader):
-    """
-    Reader for my method....
-    PLEASE UPDATE
-    """
+    """Reader for {{cookiecutter.__technique}}."""
 
     supported_nxdls = ["{{cookiecutter.supported_nxdl}}"]
 
@@ -36,7 +33,7 @@ class {{cookiecutter.__reader_class}}(BaseReader):
         objects: tuple[Any] | None = None,
     ):
         """
-        General read menthod to prepare the template.
+        Read method to prepare the template.
         """
         return template
 
