@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: '{{cookiecutter.__package_name}}
+title: '{{cookiecutter.__package_name}}'
 version: 0.1.0
 message:
   If you use this software, please cite it using the
@@ -10,7 +10,7 @@ authors:
     family-names:
 doi: ''
 repository-code: 'https://github.com/FAIRmat-NFDI/{{cookiecutter.__package_name}}'
-url: 'https://fairmat-nfdi.github.io/{{cookiecutter.__package_name}}/'
+url:
 abstract:
   The {{cookiecutter.__package_name}} package is a reader plugin of pynxtools (https://github.com/FAIRmat-NFDI/pynxtools).
   The work is funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) - 460197019

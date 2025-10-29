@@ -3,10 +3,11 @@ requires = ["setuptools>=78.1.1", "setuptools-scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
 {%- set license_classifiers = {
-    'MIT': 'License :: OSI Approved :: MIT License',
-    'BSD-4-Clause': 'License :: OSI Approved :: BSD License',
-    'Apache-2.0': 'License :: OSI Approved :: Apache Software License',
-    'GPL-3.0-or-later': 'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
+    "Apache Software License 2.0": "License :: OSI Approved :: Apache Software License",
+    "BSD-3": "License :: OSI Approved :: BSD License",
+    "GNU GPL v3.0+": "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "MIT": "License :: OSI Approved :: MIT License",
+    "Mozilla Public License Version 2.0": "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
 } %}
 
 [project]
@@ -17,9 +18,7 @@ authors = [
 ]
 description = "{{cookiecutter.short_description}}"
 readme = "README.md"
-{%- if cookiecutter.license in license_classifiers %}
-license= {text = "{{ cookiecutter.license }}"}
-{%- endif %}
+license = { file = "LICENSE" }
 requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python :: 3.10",
