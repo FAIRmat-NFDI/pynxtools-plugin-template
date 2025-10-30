@@ -4,7 +4,7 @@ A cookiecutter template for creating a [`pynxtools`](https://github.com/FAIRmat-
 
 ## Getting started
 
-Install [cruft](https://cruft.github.io/cruft/#installation) and cookiecutter.
+Install [`cruft`](https://cruft.github.io/cruft/#installation) and [`cookiecutter`](https://github.com/cookiecutter/cookiecutter).
 
 We recommend to use [`uv`](https://docs.astral.sh/uv/), an etremely fast Python package and project manager:
 
@@ -16,7 +16,7 @@ Installation with standard pip is of course also possible (just omit the startin
 
 ## New projects
 
-Run the following command to create a new `pynxtools` plugin project using pynxtools-plugin-template:
+Run the following command to create a new `pynxtools` plugin project using `pynxtools-plugin-template`:
 
 ### Using https
 
@@ -38,7 +38,7 @@ cruft create gh:FAIRmat-NFDI/pynxtools-plugin-template.git
 
 ## Existing projects
 
-You can also link existing `pynxtools` plugin project to pynxtools-plugin-template using `cruft`.
+You can also link existing `pynxtools` plugin projects to pynxtools-plugin-template using `cruft`.
 
 ### Using https
 
@@ -111,11 +111,11 @@ cruft update
 
 after you have initiated the cruft link.
 
-There is also a GitHub workflow that automatically creates a pull request in your repository if the template has changed (for this to work, your organization must allow automated pull request.)
+There is also a GitHub workflow that automatically creates a pull request in your repository if the template has changed (for this to work, your organization must allow automated pull requests.)
 
 ## Git
 
-The cookiecutter template will only create the structure of the repository. We recommend using Git for code versioning. After the cruft creation, run
+The cookiecutter template will only create the structure of the repository. We strongly recommend using Git for code versioning. After the cruft creation, run
 
 ```bash
 git init
@@ -123,14 +123,15 @@ git add -A
 git commit -m "initial commit"
 ```
 
-to initialize the repository structure. If your repository is published to GitHub, this also enables the previously mentioned automated update in the Github Actions.
+to initialize git versioning. If your repository is published to GitHub, this also enables the previously mentioned automated update in the Github Actions.
 
 ## What you should implement
 
 The cookiecutter template only creates the basic structure of the repository. In order to have a useful package, there are multiple topics you should address.
 
-- **Write your reader**: In `pynxtoosl-PLUGIN/src/pynxtoos_PLUGIN/reader.py` (where `PLUGIN` is the `cookiecutter.reader_name`), you will find an empty reader. You should implement the reader to parse data from your technique.
-- **Provide test data**: In `pynxtoosl-PLUGIN/`, you will find standardized tests using the `pynxtools.testing` module. You should add data in `tests/data` that your reader can convert to the chosen application definition. For each test case, a new folder shall be createad within `tests/data`. In this folder, there should also be a reference NeXus file for comparison in the tests. You can add the name of the folders to the `scripts/generate_reference_files.sh` script to be able to automatically create the reference test file when your reader changes.
-- **Documentation**: There is a `mkdocs` template available in the `docs` folder. You should add to the documentation (keeping to the [Diátaxis](https://diataxis.fr/) framework).
-- **NOMAD integration**: If you choose to use a NOMAD entry plugin point during package creation with cookiecutter, you should implement these entry points. You can learn more about these entry points in the [NOMAD documentation](https://nomad-lab.eu/prod/v1/docs/howto/plugins/plugins.html).
-- **Publish**: Once your reader plugin is working, you should create a release on GitHub. Once a NOMAD release exists, the package is automatically published in PyPI (provided you have added a PyPI access token in your repository). For publication to Zenodo, it is also important to fill out the `CITATION.cff` file.
+- **Write your reader**: In `pynxtoosl-PLUGIN/src/pynxtoos_PLUGIN/reader.py` (where `PLUGIN` is the `cookiecutter.reader_name`), you will find an empty reader. You should implement the reader to parse data from your technique. You can learn more about creating `pynxtools` readers in the [`pynxtools` documentation](https://fairmat-nfdi.github.io/pynxtools/how-tos/pynxtools/build-a-plugin.html#writing-a-reader).
+- **Provide test data**: In `pynxtoosl-PLUGIN/`, you will find standardized tests using the [`pynxtools.testing`](https://fairmat-nfdi.github.io/pynxtools/how-tos/pynxtools/using-pynxtools-test-framework.html) module. You should add data in `tests/data` that your reader can use to convert to HDF5 files for the chosen application definition. For each test case, a new folder shall be createad within `tests/data`. In this folder, there should also be a reference NeXus file for comparison in the tests. You can add the name of the folders to the `scripts/generate_reference_files.sh` script to be able to automatically create the reference test file when your reader changes.
+- **Documentation**: There is a [`mkdocs`](https://www.mkdocs.org/) template available in the `docs` folder. You should add to the documentation (keeping to the [Diátaxis](https://diataxis.fr/) framework).
+- **NOMAD integration**: If you choose to use a NOMAD entry plugin point during package creation with cookiecutter, you should implement these entry points. You can learn more about NOMAD entry points in the [NOMAD documentation](https://nomad-lab.eu/prod/v1/docs/howto/plugins/plugins.html).
+- **Spellcheck**: We run spellcheckers using [`cspell`](https://cspell.org/) of both the code and the documentation. The spellchecker is integrated as a [pre-commit hook](https://pre-commit.com/) as well as in an automated GitHub Actions pipeline. When creating your reader, you may use custom words that are in the standard `cspell` dictionaries.
+- **Publish**: Once your reader plugin is working, you should create a release on GitHub. When you release the package on GitHub, it is automatically published on PyPI, provided that you have added a PyPI access token to your repository. For publication to Zenodo, it is also important to fill out the `CITATION.cff` file.
