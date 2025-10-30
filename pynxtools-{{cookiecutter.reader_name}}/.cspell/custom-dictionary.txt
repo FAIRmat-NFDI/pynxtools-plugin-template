@@ -1,0 +1,8 @@
+# Custom Dictionary Words
+Forschungsgemeinschaft
+caplog
+dataconverter
+mainfile
+nxdls
+pyntools
+s

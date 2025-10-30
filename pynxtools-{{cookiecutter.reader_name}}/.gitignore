@@ -199,3 +199,4 @@ cython_debug/
 *.txt
 build/
 .python-version
+!.cspell/custom-dictionary.txt
