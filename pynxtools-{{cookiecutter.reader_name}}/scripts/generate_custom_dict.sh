@@ -16,7 +16,7 @@ if ! cspell --config cspell.json \
   --no-progress --no-summary --words-only \
   "README.md" "CITATION.cff" \
   "docs/**/*" \
-  "src/{{cookiecutter.__package_name}}/**/*.py" \
+  "src/{{cookiecutter.__module_name}}/**/*.py" \
   "tests/**/*.py" \
   > "$cspell_output"; then
   :
