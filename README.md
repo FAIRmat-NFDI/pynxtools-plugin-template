@@ -6,82 +6,79 @@ A cookiecutter template for creating a [`pynxtools`](https://github.com/FAIRmat-
 
 Install [cruft](https://cruft.github.io/cruft/#installation) and cookiecutter.
 
-  === "uv"
+We recommend to use [`uv`](https://docs.astral.sh/uv/), an etremely fast Python package and project manager:
 
-      ```bash
-      uv pip install cruft cookiecutter
-      ```
+```bash
+uv pip install cruft cookiecutter
+```
 
-  === "pip"
-  
-      ```bash
-      pip install cruft cookiecutter
-      ```
+Installation with standard pip is of course also possible (just omit the starting `uv` in the commands).
 
 ## New projects
 
 Run the following command to create a new `pynxtools` plugin project using pynxtools-plugin-template:
 
-    === "https"
+### Using https
 
-      ```bash
-      cruft create https://github.com/FAIRmat-NFDI/pynxtools-plugin-template.git
-      ```
+```bash
+cruft create https://github.com/FAIRmat-NFDI/pynxtools-plugin-template.git
+```
 
-  === "ssh"
-  
-      ```bash
-      cruft create git@github.com:FAIRmat-NFDI/pynxtools-plugin-template.git
-      ```
+### Using ssh
 
-  === "GitHub CLI"
-  
-      ```bash
-      cruft create gh:FAIRmat-NFDI/pynxtools-plugin-template.git
-      ```
+```bash
+cruft create git@github.com:FAIRmat-NFDI/pynxtools-plugin-template.git
+```
+
+### Using the GitHub CLI
+
+```bash
+cruft create gh:FAIRmat-NFDI/pynxtools-plugin-template.git
+```
 
 ## Existing projects
 
-You can also link existing `pynxtools` plugin project to pynxtools-plugin-template using `cruft`:
+You can also link existing `pynxtools` plugin project to pynxtools-plugin-template using `cruft`.
 
-    === "https"
+### Using https
 
-      ```bash
-      cruft link https://github.com/FAIRmat-NFDI/pynxtools-plugin-template.git
-      ```
+```bash
+cruft link https://github.com/FAIRmat-NFDI/pynxtools-plugin-template.git
+```
 
-  === "ssh"
-  
-      ```bash
-      cruft link git@github.com:FAIRmat-NFDI/pynxtools-plugin-template.git
-      ```
+### Using ssh
 
-  === "GitHub CLI"
-  
-      ```bash
-      cruft link gh:FAIRmat-NFDI/pynxtools-plugin-template.git
-      ```
+```bash
+cruft link git@github.com:FAIRmat-NFDI/pynxtools-plugin-template.git
+```
+
+### Using the GitHub CLI
+
+```bash
+cruft link gh:FAIRmat-NFDI/pynxtools-plugin-template.git
+```
 
 ## Cookiecutter input
 
 Cookiecutter prompts you for information regarding your plugin:
 
 ```no-highlight
-  [1/9] reader_name (): test
-  [2/9] supported_nxdl (): NXtest
-  [3/9] short_description (): My pynxtools test plugin
-  [4/9] author_name (): John Doe
-  [5/9] author_email (): name.surname@ohysik.hu-berlin.de
-  [6/9] Select license
+  [1/10] Name of your reader (short, lowercase, no spaces) (): test
+  [2/10] Primary application definition this reader supports (NXtest): NXtest
+  [3/10] Short description (): My pynxtools test plugin
+  [4/10] Author's full name (): John Doe
+  [5/10] Author's email address (fairmat@physik.hu-berlin.de): john.doe@email.com
+  [6/10] Select license
     1 - Apache Software License 2.0
     2 - BSD-3
     3 - GNU GPL v3.0+
     4 - MIT
     5 - Mozilla Public License Version 2.0
     Choose from [1/2/3/4/5] (1): 1
-  [7/9] vscode_settings [y/n] (y): y
-  [8/9] include_nomad_app [y/n] (y): y
-  [9/9] include_nomad_example_upload [y/n] (y): y
+  [7/10] Zenodo record (last number in DOI, if available) ():
+  [8/10] Include VSCode settings? [y/n] (y): y
+  [9/10] Include a NOMAD app entry point? [y/n] (y): y
+  [10/10] Include a NOMAD example upload entry point? [y/n] (y): y
 INFO:post_gen_project:Copied py_sources/nomad/README.md → /home/lukaspie/fairmat/pynxtools-plugin-template/pynxtools-test/src/pynxtools_test/nomad/README.md
 INFO:post_gen_project:Copied py_sources/nomad/__init__.py → /home/lukaspie/fairmat/pynxtools-plugin-template/pynxtools-test/src/pynxtools_test/nomad/__init__.py
 INFO:post_gen_project:Moving example_uploads files to /home/lukaspie/fairmat/pynxtools-plugin-template/pynxtools-test/src/pynxtools_test/nomad/example_uploads
