@@ -4,5 +4,4 @@ caplog
 dataconverter
 mainfile
 nxdls
-pyntools
-s
+pynxtools

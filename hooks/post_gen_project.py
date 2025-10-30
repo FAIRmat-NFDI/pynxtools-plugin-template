@@ -1,4 +1,6 @@
+
 import logging
+import stat
 from pathlib import Path
 import shutil
 
@@ -19,6 +21,15 @@ def remove(path: Path):
 if not {{cookiecutter.vscode_settings}}:
     remove('.vscode')
 
+scripts_dir = Path("scripts")
+
+if scripts_dir.exists():
+    for script in scripts_dir.glob("**/*.sh"):
+        st = script.stat()
+        script.chmod(st.st_mode | stat.S_IEXEC)
+        logger.info(f"Made executable: {script}")
+else:
+    logger.info("No scripts/ directory found — skipping chmod step.")
 
 def move_files(variant: str, save_path: Path, source_root: Path):
     """
