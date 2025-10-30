@@ -1,21 +1,29 @@
 cff-version: 1.2.0
-title: '{{cookiecutter.__package_name}}: A pynxtools plugin'
-message: >-
+title: '{{cookiecutter.__package_name}}'
+version: 0.1.0
+message:
   If you use this software, please cite it using the
   metadata from this file.
 type: software
-version: 0.1.0
 authors:
   - given-names:
     family-names:
-doi: ''
-repository-code: 'https://github.com/FAIRmat-NFDI/{{cookiecutter.__package_name}}'
-url: 'https://fairmat-nfdi.github.io/{{cookiecutter.__package_name}}/'
+repository-code: https://github.com/FAIRmat-NFDI/{{cookiecutter.__package_name}}
+{%- if cookiecutter.zenodo_record %}
+doi: 10.5281/zenodo.{{cookiecutter.zenodo_record}}
+url: https://zenodo.org/records/{{cookiecutter.zenodo_record}}
+{%- endif %}
+keywords:
+  - NeXus
+  - pynxtools
+  - NOMAD
 abstract:
-  The {{cookiecutter.__package_name}} package is a reader plugin of pynxtools (https://github.com/FAIRmat-NFDI/pynxtools).
-  The work is funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) - 460197019
-  (FAIRmat) (https://gepris.dfg.de/gepris/projekt/460197019?language=en).
-license: Apache-2.0
+  {{cookiecutter.__package_name}} is a reader plugin for pynxtools (https://github.com/FAIRmat-NFDI/pynxtools)
+  written in Python.
+
+  The work is funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) - 460197019 (FAIRmat)
+  (https://gepris.dfg.de/gepris/projekt/460197019?language=en).
+license: {{cookiecutter.license}}
 funding:
   - name: Deutsche Forschungsgemeinschaft
     award-number: 460197019

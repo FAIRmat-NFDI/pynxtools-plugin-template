@@ -1,22 +1,18 @@
-site_name: {{cookiecutter.__package_name}}
+site_name: Documentation for {{cookiecutter.__package_name}}
 site_description: |
-  The documentation for the {{cookiecutter.__package_name}} plugin
+  The documentation for the {{cookiecutter.__package_name}} plugin.
 site_author: The FAIRmat authors
 repo_url: https://github.com/FAIRmat-NFDI/{{cookiecutter.__package_name}}
+edit_uri: ""
+
 nav:
   - Home: index.md
   - Tutorials:
     - tutorial/installation.md
     - tutorial/contributing.md
-  # - How-tos:
-  #   - how-tos/how-to.md
-  # - Learn:
-  #   - explanation/learn.md
-  # - Reference:
-  #   - reference/reference.md
 
 plugins:
-    - search
+  - search
 
 theme:
   name: material
@@ -51,9 +47,10 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.emoji
+  - mkdocs-click
   - pymdownx.extra
   - pymdownx.tabbed:
-      alternate_style: true
+    alternate_style: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid

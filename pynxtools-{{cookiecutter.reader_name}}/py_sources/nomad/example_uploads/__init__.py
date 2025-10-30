@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-"""Entry points for XPS examples."""
+"""Entry points for {{cookiecutter.__technique}} example uploads."""
 
 try:
     from nomad.config.models.plugins import ExampleUploadEntryPoint
@@ -29,5 +29,5 @@ except ImportError as exc:
     category="NeXus Experiment Examples",
     description="""""",
     plugin_package="{{cookiecutter.__module_name}}",
-    resources=["nomad/examples/*"],
+    resources=["nomad/example_uploads/example/*"],
 )

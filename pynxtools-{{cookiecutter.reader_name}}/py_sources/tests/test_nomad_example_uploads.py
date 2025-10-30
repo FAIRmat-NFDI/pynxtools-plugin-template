@@ -18,10 +18,11 @@
 """Tests for the NOMAD examples."""
 
 import os
+
 import pytest
 
 try:
-    import nomad
+    import nomad  # noqa: F401
 except ImportError:
     pytest.skip(
         "Skipping NOMAD example tests because nomad-lab is not installed",
@@ -34,15 +35,16 @@ from pynxtools.testing.nomad_example import (
     parse_nomad_examples,
 )
 
-from {{cookiecutter.__module_name}}.nomad import {{cookiecutter.__nomad_example}}
+from {{cookiecutter.__module_name}}.nomad.example_uploads import {{cookiecutter.__nomad_example}}
 
 EXAMPLE_PATH = os.path.join(
     os.path.dirname(__file__),
     "..",
     "src",
-    f"{{cookiecutter.__module_name}}",
+    "{{cookiecutter.__module_name}}",
     "nomad",
-    "examples",
+    "example_uploads",
+    "example",
 )
 
 
@@ -61,7 +63,7 @@ def test_parse_nomad_examples(mainfile):
         pytest.param(
             {{cookiecutter.__nomad_example}},
             EXAMPLE_PATH,
-            id=str({{cookiecutter.__nomad_example}}),
+            id="{{cookiecutter.__nomad_example}}",
         ),
     ],
 )

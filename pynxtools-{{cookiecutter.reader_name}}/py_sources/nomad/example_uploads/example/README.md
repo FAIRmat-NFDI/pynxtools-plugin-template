@@ -15,4 +15,4 @@ The general structure of this example is the following:
 
 If you're interested in using this pipeline and NOMAD in general you'll find support at [FAIRmat](https://www.fairmat-nfdi.eu/fairmat/).
 
-For questions regarding the experiment or this specific example contact [the developers](https://fairmat-nfdi.github.io/pynxtools-{{cookiecutter.reader_name}}/contact.html).
+For questions regarding the experiment or this specific example [contact the developers](https://fairmat-nfdi.github.io/{{cookiecutter.__package_name}}/contact.html) of this example upload.

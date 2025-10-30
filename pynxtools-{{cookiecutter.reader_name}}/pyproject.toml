@@ -3,10 +3,11 @@ requires = ["setuptools>=78.1.1", "setuptools-scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
 {%- set license_classifiers = {
-    'MIT': 'License :: OSI Approved :: MIT License',
-    'BSD-4-Clause': 'License :: OSI Approved :: BSD License',
-    'Apache-2.0': 'License :: OSI Approved :: Apache Software License',
-    'GPL-3.0-or-later': 'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
+    "Apache Software License 2.0": "License :: OSI Approved :: Apache Software License",
+    "BSD-3": "License :: OSI Approved :: BSD License",
+    "GNU GPL v3.0+": "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "MIT": "License :: OSI Approved :: MIT License",
+    "Mozilla Public License Version 2.0": "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
 } %}
 
 [project]
@@ -17,9 +18,7 @@ authors = [
 ]
 description = "{{cookiecutter.short_description}}"
 readme = "README.md"
-{%- if cookiecutter.license in license_classifiers %}
-license= {text = "{{ cookiecutter.license }}"}
-{%- endif %}
+license = { file = "LICENSE" }
 requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python :: 3.10",
@@ -32,7 +31,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "pynxtools>=0.12.0"
+    "pynxtools>=0.12.0",
 ]
 
 [project.optional-dependencies]
@@ -52,6 +51,8 @@ docs = [
     "mkdocs-material",
     "mkdocs-material-extensions",
     "mkdocs-macros-plugin",
+    "pymdown-extensions",
+    "mkdocs-click"
 ]
 {% if cookiecutter.include_nomad_app or cookiecutter.include_nomad_example_upload -%}
 nomad = ["nomad-lab[parsing, infrastructure]>=1.3.17"]
@@ -87,7 +88,6 @@ where = [
 [tool.setuptools_scm]
 version_scheme = "no-guess-dev"
 local_scheme = "node-and-date"
-fallback_version = "0.1.0"
 
 [tool.ruff]
 include = ["src/{{cookiecutter.__module_name}}/*.py", "tests/*.py"]
@@ -99,6 +99,9 @@ select = [
     "E", # pycodestyle
     "W", # pycodestyle
     "PL", # pylint
+    "UP", # pyupgrade
+    "F401", # remove unused import
+    "I001", # sort imports
     "NPY201", # upgrade numpy v2
 ]
 ignore = [
@@ -117,6 +120,7 @@ ignore = [
     "PLR5501", # else-if-used
 ]
 fixable = ["ALL"]
+isort.split-on-trailing-comma = false
 
 [tool.ruff.format]
 quote-style = "double"
