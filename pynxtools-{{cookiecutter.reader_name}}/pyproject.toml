@@ -31,7 +31,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "pynxtools>=0.12.0"
+    "pynxtools>=0.12.0",
 ]
 
 [project.optional-dependencies]
@@ -51,6 +51,8 @@ docs = [
     "mkdocs-material",
     "mkdocs-material-extensions",
     "mkdocs-macros-plugin",
+    "pymdown-extensions",
+    "mkdocs-click"
 ]
 {% if cookiecutter.include_nomad_app or cookiecutter.include_nomad_example_upload -%}
 nomad = ["nomad-lab[parsing, infrastructure]>=1.3.17"]
@@ -86,7 +88,6 @@ where = [
 [tool.setuptools_scm]
 version_scheme = "no-guess-dev"
 local_scheme = "node-and-date"
-fallback_version = "0.1.0"
 
 [tool.ruff]
 include = ["src/{{cookiecutter.__module_name}}/*.py", "tests/*.py"]
@@ -98,6 +99,9 @@ select = [
     "E", # pycodestyle
     "W", # pycodestyle
     "PL", # pylint
+    "UP", # pyupgrade
+    "F401", # remove unused import
+    "I001", # sort imports
     "NPY201", # upgrade numpy v2
 ]
 ignore = [
@@ -116,6 +120,7 @@ ignore = [
     "PLR5501", # else-if-used
 ]
 fixable = ["ALL"]
+isort.split-on-trailing-comma = false
 
 [tool.ruff.format]
 quote-style = "double"
