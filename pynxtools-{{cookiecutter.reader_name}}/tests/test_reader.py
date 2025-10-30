@@ -18,7 +18,7 @@
 """Tests for the pynxtools reader plugin."""
 
 import os
-from typing import Any, Literal
+from typing import Any
 
 import pytest
 from pynxtools.dataconverter.convert import get_reader
