@@ -21,8 +21,8 @@ jobs:
         cspell --config cspell.json \
         "README.md" "CITATION.cff" \
         "docs/**/*" \
-        "src/{{cookiecutter.__module_name}}/**/.py" \
-        "tests/**/.py"
+        "src/{{cookiecutter.__module_name}}/**/*.py" \
+        "tests/**/*.py"
 
     - name: Fail on errors
       run: |

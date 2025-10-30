@@ -32,5 +32,5 @@ repos:
           - README.md
           - CITATION.cff
           - docs/**/*
-          - src/{{cookiecutter.__module_name}}/**/.py
+          - src/{{cookiecutter.__module_name}}/**/*.py
           - tests/**/*.py
