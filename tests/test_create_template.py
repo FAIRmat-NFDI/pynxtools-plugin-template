@@ -28,10 +28,10 @@ def run_tox(plugin_path: str):
 
 def initialize_git(project_path: str):
     """Initialize a Git repository so setuptools_scm can determine version."""
-    subprocess.run(["git", "config", "--global", "user.email", "you@example.com"], cwd=project_path, check=True)
+    subprocess.run(["git", "init"], cwd=project_path, check=True)
+    # Configure local user for commits
     subprocess.run(["git", "config", "user.email", "ci@example.com"], cwd=project_path, check=True)
     subprocess.run(["git", "config", "user.name", "CI Bot"], cwd=project_path, check=True)
-    subprocess.run(["git", "init"], cwd=project_path, check=True)
     subprocess.run(["git", "add", "."], cwd=project_path, check=True)
     subprocess.run(["git", "commit", "-m", "Initial commit"], cwd=project_path, check=True)
 
