@@ -24,7 +24,6 @@ nxdls=(
 project_dir=$(dirname $(dirname $(realpath $0)))
 cd $project_dir/tests/data
 
-
 for folder in "${folders[@]}"; do
   for nxdl in "${nxdls[@]}"; do
     update_ref_file "$folder" "$nxdl"
