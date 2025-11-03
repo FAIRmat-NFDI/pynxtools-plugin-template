@@ -21,8 +21,8 @@ from typing import Any
 from pynxtools.dataconverter.readers.base.reader import BaseReader
 
 
-class {{cookiecutter.__reader_class}}(BaseReader):
-    """Reader for {{cookiecutter.__technique}}."""
+class {{cookiecutter.reader_class}}(BaseReader):
+    """Reader for {{cookiecutter.technique}}."""
 
     supported_nxdls = ["{{cookiecutter.supported_nxdl}}"]
 
@@ -38,4 +38,4 @@ class {{cookiecutter.__reader_class}}(BaseReader):
         return template
 
 
-READER = {{cookiecutter.__reader_class}}
+READER = {{cookiecutter.reader_class}}

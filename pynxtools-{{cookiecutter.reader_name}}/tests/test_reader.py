@@ -59,7 +59,7 @@ def test_nexus_conversion(
     nxdl, sub_reader_data_dir, ignore_lines, ignore_sections, tmp_path, caplog
 ):
     """
-    Test {{cookiecutter.__technique}} reader
+    Test {{cookiecutter.technique}} reader
 
     Parameters
     ----------

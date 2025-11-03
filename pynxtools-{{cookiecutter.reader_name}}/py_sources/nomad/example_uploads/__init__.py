@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-"""Entry points for {{cookiecutter.__technique}} example uploads."""
+"""Entry points for {{cookiecutter.technique}} example uploads."""
 
 try:
     from nomad.config.models.plugins import ExampleUploadEntryPoint

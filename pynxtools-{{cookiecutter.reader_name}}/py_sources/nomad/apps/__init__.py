@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-"""Entry points for {{cookiecutter.__technique}} apps."""
+"""Entry points for {{cookiecutter.technique}} apps."""
 
 try:
     from nomad.config.models.plugins import AppEntryPoint
@@ -28,10 +28,10 @@ except ImportError as exc:
 schema = "pynxtools.nomad.schema.Root"
 
 {{cookiecutter.__nomad_app}} = AppEntryPoint(
-    name="{{cookiecutter.__technique}} App",
-    description="App for {{cookiecutter.__technique}} data.",
+    name="{{cookiecutter.technique}} App",
+    description="App for {{cookiecutter.technique}} data.",
     app=App(
-        label="{{cookiecutter.__technique}}",
+        label="{{cookiecutter.technique}}",
         path="{{cookiecutter.reader_name}}_app",
         category="Experiment",
         search_quantities=SearchQuantities(
