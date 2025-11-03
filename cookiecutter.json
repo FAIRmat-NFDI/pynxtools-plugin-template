@@ -2,6 +2,8 @@
     "reader_name": "",
     "supported_nxdl": "NXtest",
     "short_description": "",
+    "technique": "{{ cookiecutter.reader_name|upper }}",
+    "reader_class": "{{ cookiecutter.technique }}Reader",
     "author_name": "",
     "author_email": "fairmat@physik.hu-berlin.de",
     "license": [
@@ -15,8 +17,6 @@
     "vscode_settings": true,
     "include_nomad_app": true,
     "include_nomad_example_upload": true,
-    "__technique": "{{ cookiecutter.reader_name|upper }}",
-    "__reader_class": "{{ cookiecutter.__technique }}Reader",
     "__package_name": "pynxtools-{{ cookiecutter.reader_name }}",
     "__module_name": "pynxtools_{{ cookiecutter.reader_name }}",
     "__nomad_example": "{{ cookiecutter.reader_name }}_example_upload_entry_point",

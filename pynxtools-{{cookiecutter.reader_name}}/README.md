@@ -10,7 +10,7 @@
 [![DOI](https://zenodo.org/badge/759916501.svg)](https://doi.org/10.5281/zenodo.{{cookiecutter.zenodo_record}})
 {%- endif %}
 
-# `{{cookiecutter.__package_name}}`: A `pynxtools` reader for {{cookiecutter.__technique}} data
+# `{{cookiecutter.__package_name}}`: A `pynxtools` reader for {{cookiecutter.technique}} data
 
 {{cookiecutter.short_description}}.
 

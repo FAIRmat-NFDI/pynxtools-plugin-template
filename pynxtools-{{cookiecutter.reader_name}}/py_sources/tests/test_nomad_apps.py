@@ -32,4 +32,4 @@ def test_importing_app():
     # this will raise an exception if pydantic model validation fails for the app
     from {{cookiecutter.__module_name}}.nomad.apps import {{cookiecutter.__nomad_app}}  # noqa: PLC0415
 
-    assert {{cookiecutter.__nomad_app}}.app.label == "{{cookiecutter.__technique}}"
+    assert {{cookiecutter.__nomad_app}}.app.label == "{{cookiecutter.technique}}"
