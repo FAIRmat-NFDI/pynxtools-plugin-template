@@ -3,6 +3,9 @@ function update_ref_file {
   local FOLDER=$1
   local NXDL=$2
   cd $FOLDER
+  if [[ "$FOLDER" == "." ]]; then
+    FOLDER="test"
+  fi
   echo "Update $FOLDER reference file for $NXDL"
   files=$(find . -type f \( ! -name "*.log" -a ! -name "*.nxs" \))
   dataconverter ${files[@]} --reader $READER --nxdl $NXDL --ignore-undocumented --output "${FOLDER}_ref.nxs" # &> ref_output.txt
