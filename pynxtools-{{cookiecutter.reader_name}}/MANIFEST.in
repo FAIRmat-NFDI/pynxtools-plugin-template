@@ -1,6 +1,6 @@
 prune *
 exclude *
-recursive-include src/{{cookiecutter.__module_name}} *.py *.json
+recursive-include src/{{cookiecutter.__module_name}} *.py
 include pyproject.toml README.md
 {%- if cookiecutter.include_nomad_example_upload %}
 graft src/{{cookiecutter.__module_name}}/nomad/example_uploads
