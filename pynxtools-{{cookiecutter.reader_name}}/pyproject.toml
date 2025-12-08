@@ -55,7 +55,7 @@ docs = [
     "mkdocs-click"
 ]
 {% if cookiecutter.include_nomad_app or cookiecutter.include_nomad_example_upload -%}
-nomad = ["nomad-lab[parsing, infrastructure]>=1.3.17"]
+nomad = ["nomad-lab[infrastructure]>=1.3.17"]
 {%- endif %}
 
 [project.urls]
