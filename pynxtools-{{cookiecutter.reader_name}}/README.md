@@ -5,7 +5,7 @@
 ![](https://img.shields.io/pypi/pyversions/{{cookiecutter.__package_name}})
 ![](https://img.shields.io/pypi/l/{{cookiecutter.__package_name}})
 ![](https://img.shields.io/pypi/v/{{cookiecutter.__package_name}})
-![](https://coveralls.io/repos/github/FAIRmat-NFDI/{{cookiecutter.__package_name}}/badge.svg?branch=main)
+![Coverage Status](https://coveralls.io/repos/github/FAIRmat-NFDI/{{cookiecutter.__package_name}}/badge.svg?branch=main)
 {%- if cookiecutter.zenodo_record %}
 [![DOI](https://zenodo.org/badge/759916501.svg)](https://doi.org/10.5281/zenodo.{{cookiecutter.zenodo_record}})
 {%- endif %}
@@ -18,11 +18,9 @@ This `pynxtools` plugin was generated with [`cookiecutter`](https://github.com/c
 
 ## Installation
 
-It is recommended to use python 3.12 with a dedicated virtual environment for this package.
-Learn how to manage [python versions](https://github.com/pyenv/pyenv) and
-[virtual environments](https://realpython.com/python-virtual-environments-a-primer/).
+It is recommended to use python 3.12 with a dedicated virtual environment for this package. Learn how to manage [python versions](https://github.com/pyenv/pyenv) and [virtual environments](https://realpython.com/python-virtual-environments-a-primer/).
 
-This package is a reader plugin for [`pynxtools`](https://github.com/FAIRmat-NFDI/pynxtools) and can be installed together with `pynxtools`:
+This package is a reader plugin for [`pynxtools`](https://github.com/FAIRmat-NFDI/pynxtools) and should be installed together with `pynxtools`:
 
 ```shell
 uv pip install pynxtools[{{cookiecutter.reader_name}}]
