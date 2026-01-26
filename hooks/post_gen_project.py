@@ -1,8 +1,9 @@
-
 import logging
+from typing import Optional
 import stat
 from pathlib import Path
 import shutil
+import subprocess
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("post_gen_project")
@@ -18,8 +19,9 @@ def remove(path: Path):
     elif path.is_dir():
         shutil.rmtree(path)
 
+
 if not {{cookiecutter.vscode_settings}}:
-    remove('.vscode')
+    remove(".vscode")
 
 scripts_dir = Path("scripts")
 
@@ -31,12 +33,18 @@ if scripts_dir.exists():
 else:
     logger.info("No scripts/ directory found — skipping chmod step.")
 
-def move_files(variant: str, save_path: Path, source_root: Path):
+
+def move_files(
+    variant: str,
+    save_path: Path,
+    source_root: Optional[Path] = None,
+    source_file: Optional[Path] = None,
+):
     """
     Move files from source_root/variant to save_path
     """
     src_dir = source_root / variant
-    if not src_dir.exists():
+    if not src_dir.exists() or not source_file.is_file():
         logger.warning("No directory found for %s", src_dir)
         return
 
@@ -49,6 +57,29 @@ def move_files(variant: str, save_path: Path, source_root: Path):
             dst_path = save_path / rel_path
             dst_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.move(str(src_path), str(dst_path))
+
+
+def generate_requirements_txt():
+    """Generate requirements.txt from pyproject.toml using uv pip compile."""
+    try:
+        logger.info("Generating requirements.txt from pyproject.toml")
+        command = [
+            "uv",
+            "pip",
+            "compile",
+            "pyproject.toml",
+            "--all-extras",
+            "-o",
+            "requirements.txt",
+        ]
+        subprocess.run(command, check=True)
+        logger.info("Successfully generated requirements.txt")
+    except subprocess.CalledProcessError as e:
+        logger.error("Failed to generate requirements.txt: %s", e)
+    except FileNotFoundError:
+        logger.error(
+            "uv command not found. Please install uv to generate requirements.txt"
+        )
 
 
 def remove_temp_folders(temp_folders):
@@ -66,6 +97,7 @@ if __name__ == "__main__":
         for variant, condition in [
             ("example_uploads", "{{cookiecutter.include_nomad_example_upload}}"),
             ("apps", "{{cookiecutter.include_nomad_app}}"),
+            ("north-tools", "{{cookiecutter.include_north_tools}}"),
         ]
         if condition != "False"
     ]
@@ -90,9 +122,17 @@ if __name__ == "__main__":
 
             # # Copy test files
             for test_file in (PY_SOURCES / "tests").iterdir():
-                if test_file.is_file() and any(variant in test_file.name for variant in variants):
+                if test_file.is_file() and any(
+                    variant in test_file.name for variant in variants
+                ):
                     dst_file = tests / test_file.name
                     shutil.copy(test_file, dst_file)
                     logger.info("Copied test %s → %s", test_file, dst_file)
+        if "north-tools" not in variants:
+            remove(root / ".dockerignore")
+            remove(root / ".github" / "workflows" / "publish-north.yaml")
+
+        # Generate requirements.txt file from pyproject.toml file
+        generate_requirements_txt()
 
         remove_temp_folders(ALL_TEMP_FOLDERS)
