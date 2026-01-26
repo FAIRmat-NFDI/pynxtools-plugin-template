@@ -15,11 +15,9 @@ tool = NORTHTool(
     path_prefix='lab/tree',
     privileged=False,
     with_path=True,
-    display_name='{{cookiecutter.reader_name}}_jupyter',
+    display_name='{{cookiecutter.reader_name}}',
 )
 
-north_tool = NorthToolEntryPoint(id='some_id', north_tool=tool)
-
-{{cookiecutter.reader_name}}_jupyter = NorthToolEntryPoint(
+{{cookiecutter.__north_tool_EP_name}} = NorthToolEntryPoint(
     id_url_safe='{{cookiecutter.__module_name}}_{{cookiecutter.reader_name}}', north_tool=tool
 )

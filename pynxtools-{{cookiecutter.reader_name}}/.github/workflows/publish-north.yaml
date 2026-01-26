@@ -14,10 +14,9 @@ env:
   UV_VERSION: 0.9
   PYTHON_VERSION: 3.12
   JUPYTER_VERSION: 2025-04-14
-  NORTH_TOOL_DIR: src/pynxtools-{{cookiecutter.reader_name}}/north_tools/{{cookiecutter.reader_name}}_jupyter
-  TEST_DATA_DIR: tests/data/north_tools/{{cookiecutter.reader_name}}_jupyter
-  TEST_NOTEBOOKS: CommandLineDataconverter1.ipynb
-    CommandLineDataconverter2.ipynb
+  NORTH_TOOL_DIR: src/pynxtools-{{cookiecutter.reader_name}}/north_tools/{{cookiecutter.north_tool_name}}
+  TEST_DATA_DIR: tests/data/{{cookiecutter.north_tool_name}}
+  TEST_NOTEBOOKS: CommandLine.ipynb
 
 permissions:
   packages: write
