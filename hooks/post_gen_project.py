@@ -44,7 +44,7 @@ def move_files(
     Move files from source_root/variant to save_path
     """
     src_dir = source_root / variant
-    if not src_dir.exists() or not source_file.is_file():
+    if not src_dir.exists():
         logger.warning("No directory found for %s", src_dir)
         return
 

@@ -31,7 +31,7 @@ except ImportError:
 def test_importing_north_tool():
     # this will raise an exception if pydantic model validation fails for the north tool
     from {{cookiecutter.__module_name}}.north_tools.{{cookiecutter.reader_name}}_jupyter import (
-        {{cookiecutter.__reader_name}}_jupyter,
+        {{cookiecutter.reader_name}}_jupyter,
     )
 
     assert (

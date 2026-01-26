@@ -72,12 +72,16 @@ nomad = ["nomad-lab[infrastructure]>=1.3.17"]
 "Homepage" = "https://github.com/FAIRmat-NFDI/{{cookiecutter.__package_name}}"
 "Bug Tracker" = "https://github.com/FAIRmat-NFDI/{{cookiecutter.__package_name}}/issues"
 
-[project.entry-points.'pynxtools.reader'] {{cookiecutter.reader_name}} = "{{cookiecutter.__module_name}}.reader:{{cookiecutter.reader_class}}"
-{%- if cookiecutter.include_nomad_app or cookiecutter.include_nomad_example_upload %}
+[project.entry-points.'pynxtools.reader'] 
+{{cookiecutter.reader_name}} = "{{cookiecutter.__module_name}}.reader:{{cookiecutter.reader_class}}"
+{%- if cookiecutter.include_nomad_app or cookiecutter.include_nomad_example_upload or cookiecutter.include_north_tools %}
 
 [project.entry-points.'nomad.plugin']
 {%- if cookiecutter.include_nomad_app %}
 {{cookiecutter.__nomad_app}} = "{{cookiecutter.__module_name}}.nomad.apps:{{cookiecutter.__nomad_app}}"
+{%- endif %}
+{% if cookiecutter.include_north_tools %}
+{{cookiecutter.reader_name}}_jupyter = "{{cookiecutter.__module_name}}.nomad.north_tools.{{cookiecutter.reader_name}}_jupyter:{{cookiecutter.reader_name}}_jupyter"
 {%- endif %}
 {%- if cookiecutter.include_nomad_example_upload %}
 {{cookiecutter.__nomad_example}} = "{{cookiecutter.__module_name}}.nomad.example_uploads:{{cookiecutter.__nomad_example}}"

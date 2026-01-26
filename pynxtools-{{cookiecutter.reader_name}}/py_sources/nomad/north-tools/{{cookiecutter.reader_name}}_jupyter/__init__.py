@@ -10,7 +10,7 @@ tool = NORTHTool(
     icon='logo/jupyter.svg',
     image_pull_policy='Always',
     default_url='/lab',
-    maintainer=[{'email': '{{cookiecutter.email}}', 'name': '{{cookiecutter.full_name}}'}],
+    maintainer=[{'email': '{{cookiecutter.author_email}}', 'name': '{{cookiecutter.author_name}}'}],
     mount_path='/home/jovyan',
     path_prefix='lab/tree',
     privileged=False,
@@ -21,5 +21,5 @@ tool = NORTHTool(
 north_tool = NorthToolEntryPoint(id='some_id', north_tool=tool)
 
 {{cookiecutter.reader_name}}_jupyter = NorthToolEntryPoint(
-    id_url_safe='{{cookiecutter.module_name}}_{{cookiecutter.reader_name}}', north_tool=tool
+    id_url_safe='{{cookiecutter.__module_name}}_{{cookiecutter.reader_name}}', north_tool=tool
 )

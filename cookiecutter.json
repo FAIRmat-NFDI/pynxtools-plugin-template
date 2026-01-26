@@ -6,6 +6,7 @@
   "reader_class": "{{ cookiecutter.technique }}Reader",
   "author_name": "",
   "author_email": "fairmat@physik.hu-berlin.de",
+  "github_username": "foo",
   "license": [
     "Apache Software License 2.0",
     "BSD-3",
