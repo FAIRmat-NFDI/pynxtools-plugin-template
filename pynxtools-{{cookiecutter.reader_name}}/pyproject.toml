@@ -55,7 +55,7 @@ docs = [
     "mkdocs-click"
 ]
 {% if cookiecutter.include_north_tools -%}
-north_jupyter = [
+north_tool = [
     "h5glance>=0.8",
     "h5grove>=1.1.0",
     "jupyterlab-h5web[full]>=7.1.1",

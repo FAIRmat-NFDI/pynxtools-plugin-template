@@ -77,7 +77,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: {% raw %}${{ env.NORTH_TOOL_DIR }}{% endraw %}/Dockerfile.jupyter
+          file: {% raw %}${{ env.NORTH_TOOL_DIR }}{% endraw %}/Dockerfile
           build-args: |
             UV_VERSION={% raw %}${{ env.UV_VERSION }}{% endraw %}
             JUPYTER_VERSION={% raw %}${{ env.JUPYTER_VERSION }}{% endraw %}
