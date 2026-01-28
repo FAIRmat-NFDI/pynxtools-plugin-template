@@ -14,7 +14,7 @@ env:
   UV_VERSION: 0.9
   PYTHON_VERSION: 3.12
   JUPYTER_VERSION: 2025-04-14
-  NORTH_TOOL_DIR: src/pynxtools-{{cookiecutter.reader_name}}/north_tools/{{cookiecutter.north_tool_name}}
+  NORTH_TOOL_DIR: src/{{cookiecutter.__module_name}}/nomad/north_tools/{{cookiecutter.north_tool_name}}
   TEST_DATA_DIR: tests/data/{{cookiecutter.north_tool_name}}
   TEST_NOTEBOOKS: CommandLine.ipynb
 
@@ -39,20 +39,9 @@ jobs:
           show-progress: true
           submodules: true
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v7
-        with:
-          python-version: {% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
-          version: {% raw %}${{ env.UV_VERSION }}{% endraw %}
-      - name: Check Jupyter Requirements
-        run: |
-          {% raw %}
-          uv pip compile pyproject.toml --all-extras -o requirements.txt
-          if [[ `git diff requirements.txt` ]]; then
-            echo "requirements.txt is not up to date. Please run 'uv pip compile pyproject.toml --all-extras -o requirements.txt' and commit the changes."
-            exit 1
-          fi
-          {% endraw %}
+      # Replace driver `Docker' by `Docker-container` to support cache export/import
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
       # https://github.com/docker/metadata-action
       - name: Extract Docker metadata

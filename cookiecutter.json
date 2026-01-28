@@ -35,6 +35,8 @@
     "zenodo_record": "Zenodo record (last number in DOI, if available)",
     "vscode_settings": "Include VSCode settings?",
     "include_nomad_example_upload": "Include a NOMAD example upload entry point?",
-    "include_nomad_app": "Include a NOMAD app entry point?"
+    "include_nomad_app": "Include a NOMAD app entry point?",
+    "include_north_tools": "Include NOMAD North tool?",
+    "north_tool_name": "Name of the NOMAD North tool, if include NOMAD North tool is 'y'"
   }
 }

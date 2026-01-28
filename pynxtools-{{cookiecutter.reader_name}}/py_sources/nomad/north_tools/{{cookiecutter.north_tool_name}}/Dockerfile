@@ -1,6 +1,7 @@
 ARG JUPYTER_TAG=2025-10-20
 ARG BASE_JUPYTER=quay.io/jupyter/scipy-notebook
 ARG UV_VERSION=0.9
+ARG PLUGIN_NAME={{cookiecutter.__package_name}}
 # Replace plugin-name by __package_name
 
 FROM ghcr.io/astral-sh/uv:${UV_VERSION} AS uv_stage
@@ -62,8 +63,8 @@ WORKDIR ${HOME}/${PLUGIN_NAME}
 # https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
 # Install dependencies
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv pip install ".[north_tool]" --constraints requirements.txt
-
+    uv pip install ".[north]"
+    # uv pip install . --group north --constraint requirements.txt
 
 WORKDIR ${HOME}
 RUN rm -rf ${HOME}/${PLUGIN_NAME}

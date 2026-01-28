@@ -59,27 +59,27 @@ def move_files(
             shutil.move(str(src_path), str(dst_path))
 
 
-def generate_requirements_txt():
-    """Generate requirements.txt from pyproject.toml using uv pip compile."""
-    try:
-        logger.info("Generating requirements.txt from pyproject.toml")
-        command = [
-            "uv",
-            "pip",
-            "compile",
-            "pyproject.toml",
-            "--all-extras",
-            "-o",
-            "requirements.txt",
-        ]
-        subprocess.run(command, check=True)
-        logger.info("Successfully generated requirements.txt")
-    except subprocess.CalledProcessError as e:
-        logger.error("Failed to generate requirements.txt: %s", e)
-    except FileNotFoundError:
-        logger.error(
-            "uv command not found. Please install uv to generate requirements.txt"
-        )
+# def generate_requirements_txt():
+#    """Generate requirements.txt from pyproject.toml using uv pip compile."""
+#    try:
+#        logger.info("Generating requirements.txt from pyproject.toml")
+#        command = [
+#            "uv",
+#            "pip",
+#            "compile",
+#            "pyproject.toml",
+#            "--all-extras",
+#            "-o",
+#            "requirements.txt",
+#        ]
+#        subprocess.run(command, check=True)
+#        logger.info("Successfully generated requirements.txt")
+#    except subprocess.CalledProcessError as e:
+#        logger.error("Failed to generate requirements.txt: %s", e)
+#    except FileNotFoundError:
+#        logger.error(
+#            "uv command not found. Please install uv to generate requirements.txt"
+#        )
 
 
 def remove_temp_folders(temp_folders):
@@ -97,7 +97,7 @@ if __name__ == "__main__":
         for variant, condition in [
             ("example_uploads", "{{cookiecutter.include_nomad_example_upload}}"),
             ("apps", "{{cookiecutter.include_nomad_app}}"),
-            ("north-tools", "{{cookiecutter.include_north_tools}}"),
+            ("north_tools", "{{cookiecutter.include_north_tools}}"),
         ]
         if condition != "False"
     ]
@@ -128,11 +128,22 @@ if __name__ == "__main__":
                     dst_file = tests / test_file.name
                     shutil.copy(test_file, dst_file)
                     logger.info("Copied test %s → %s", test_file, dst_file)
-        if "north-tools" not in variants:
+
+            # Copy Test data files
+            for test_data_dir in (PY_SOURCES / "tests_data").iterdir():
+                if test_data_dir.is_dir() and variant in test_data_dir.name:
+                    dst_test_data_dir = root / "tests" / "data" / test_data_dir.name
+                    shutil.copytree(test_data_dir, dst_test_data_dir)
+                    logger.info(
+                        "Copied test data dir %s → %s",
+                        test_data_dir,
+                        dst_test_data_dir,
+                    )
+        if "north_tools" not in variants:
             remove(root / ".dockerignore")
             remove(root / ".github" / "workflows" / "publish-north.yaml")
 
-        # Generate requirements.txt file from pyproject.toml file
-        generate_requirements_txt()
+        # # Generate requirements.txt file from pyproject.toml file
+        # generate_requirements_txt()
 
         remove_temp_folders(ALL_TEMP_FOLDERS)
