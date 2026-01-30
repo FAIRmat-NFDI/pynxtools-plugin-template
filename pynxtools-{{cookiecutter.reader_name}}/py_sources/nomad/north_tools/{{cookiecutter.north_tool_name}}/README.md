@@ -4,11 +4,11 @@ This directory contains the NORTH tool configuration and Docker image for a Jupy
 
 ## Quick start
 
-The {{cookiecutter.north_tool_name}} NORTH tool provides a containerized JupyterLab environment for interactive analysis with the{{cookiecutter.__package_name}} plugin.
+The {{cookiecutter.north_tool_name}} NORTH tool provides a containerized JupyterLab environment for interactive analysis with the {{cookiecutter.__package_name}} plugin.
 
 ## Building and testing
 
-Build the Docker image locally:
+Build the Docker image locally from package root:
 
 ```bash
 docker build -f src/{{cookiecutter.__module_name}}/north_tools/{{cookiecutter.north_tool_name}}/Dockerfile \

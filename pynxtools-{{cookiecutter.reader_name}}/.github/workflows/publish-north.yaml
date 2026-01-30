@@ -53,7 +53,7 @@ jobs:
           # https://github.com/docker/metadata-action?tab=readme-ov-file#image-name-and-tag-sanitization
           tags: |
             {% raw %}type=ref,event=tag
-            type=ref,event=pr,{{branch}}-
+            type=ref,event=pr,prefix={{branch}}-
             type=raw,value=main,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}{% endraw %}
           flavor: |
             latest=auto
@@ -67,7 +67,7 @@ jobs:
           file: {% raw %}${{ env.NORTH_TOOL_DIR }}{% endraw %}/Dockerfile
           build-args: |
             UV_VERSION={% raw %}${{ env.UV_VERSION }}{% endraw %}
-            JUPYTER_VERSION={% raw %}${{ env.JUPYTER_VERSION }}{% endraw %}
+            JUPYTER_TAG={% raw %}${{ env.JUPYTER_VERSION }}{% endraw %}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           push: false
@@ -115,7 +115,7 @@ jobs:
         with:
           registry: {% raw %}${{ env.REGISTRY }}{% endraw %}
           username: {% raw %}${{ github.actor }}{% endraw %}
-          password: {% raw %}${{ secrets.GITHUB_TOKEN}}{% endraw %}
+          password: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
       - name: Push Jupyter Image
         run: |
           {% raw %}RAW_TAGS="${{ needs.build.outputs.tags }}"

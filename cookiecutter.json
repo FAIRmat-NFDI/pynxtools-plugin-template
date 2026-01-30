@@ -27,6 +27,7 @@
   "__north_tool_EP_name": "north_tool",
   "_copy_without_render": ["*.html"],
   "__prompts__": {
+    "github_username": "GitHub username (to store the Docker image on GitHub Container Registry)",
     "reader_name": "Name of your reader (short, lowercase, no spaces)",
     "supported_nxdl": "Primary application definition this reader supports",
     "short_description": "Short description",

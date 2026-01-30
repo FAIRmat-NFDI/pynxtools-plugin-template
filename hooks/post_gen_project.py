@@ -59,29 +59,6 @@ def move_files(
             shutil.move(str(src_path), str(dst_path))
 
 
-# def generate_requirements_txt():
-#    """Generate requirements.txt from pyproject.toml using uv pip compile."""
-#    try:
-#        logger.info("Generating requirements.txt from pyproject.toml")
-#        command = [
-#            "uv",
-#            "pip",
-#            "compile",
-#            "pyproject.toml",
-#            "--all-extras",
-#            "-o",
-#            "requirements.txt",
-#        ]
-#        subprocess.run(command, check=True)
-#        logger.info("Successfully generated requirements.txt")
-#    except subprocess.CalledProcessError as e:
-#        logger.error("Failed to generate requirements.txt: %s", e)
-#    except FileNotFoundError:
-#        logger.error(
-#            "uv command not found. Please install uv to generate requirements.txt"
-#        )
-
-
 def remove_temp_folders(temp_folders):
     for folder in temp_folders:
         path = Path(folder)
@@ -140,10 +117,7 @@ if __name__ == "__main__":
                         dst_test_data_dir,
                     )
         if "north_tools" not in variants:
-            remove(root / ".dockerignore")
-            remove(root / ".github" / "workflows" / "publish-north.yaml")
-
-        # # Generate requirements.txt file from pyproject.toml file
-        # generate_requirements_txt()
+            Path.unlink(root / ".dockerignore")
+            Path.unlink(root / ".github" / "workflows" / "publish-north.yaml")
 
         remove_temp_folders(ALL_TEMP_FOLDERS)

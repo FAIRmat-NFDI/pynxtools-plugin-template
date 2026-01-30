@@ -2,7 +2,6 @@ ARG JUPYTER_TAG=2025-10-20
 ARG BASE_JUPYTER=quay.io/jupyter/scipy-notebook
 ARG UV_VERSION=0.9
 ARG PLUGIN_NAME={{cookiecutter.__package_name}}
-# Replace plugin-name by __package_name
 
 FROM ghcr.io/astral-sh/uv:${UV_VERSION} AS uv_stage
 
@@ -24,10 +23,8 @@ ARG PLUGIN_NAME
 
 RUN apt-get update \
  && apt-get install --yes --quiet --no-install-recommends \
-      libgomp1 \
       libmagic1 \
       file \
-      gcc \
       build-essential \
       curl \
       zip \
@@ -35,7 +32,7 @@ RUN apt-get update \
       git
 
 # By default scipy-notebook:2025-10-20 has node 18
-# But, node > 20 needed for jupyterlab >= 4.4.10
+# But, node > 20 is required for jupyterlab >= 4.4.10
 # Add NodeSource APT repo for Debian-base distributions repository
 RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
 
