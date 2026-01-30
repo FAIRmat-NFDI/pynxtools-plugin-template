@@ -15,7 +15,7 @@ env:
   PYTHON_VERSION: 3.12
   JUPYTER_VERSION: 2025-04-14
   NORTH_TOOL_DIR: src/{{cookiecutter.__module_name}}/nomad/north_tools/{{cookiecutter.north_tool_name}}
-  TEST_DATA_DIR: tests/data/{{cookiecutter.north_tool_name}}
+  TEST_DATA_DIR: tests/data/north_tools/{{cookiecutter.north_tool_name}}
   TEST_NOTEBOOKS: CommandLine.ipynb
 
 permissions:
@@ -52,11 +52,9 @@ jobs:
           # set latest tag for main branch and tags
           # https://github.com/docker/metadata-action?tab=readme-ov-file#image-name-and-tag-sanitization
           tags: |
-            {% raw %}
-            type=ref,event=tag
+            {% raw %}type=ref,event=tag
             type=ref,event=pr,{{branch}}-
-            type=raw,value=main,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
-            {% endraw %}
+            type=raw,value=main,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}{% endraw %}
           flavor: |
             latest=auto
 
@@ -98,11 +96,12 @@ jobs:
 
       - name: Load and test in Jupyter container
         run: |
-          {% raw %}
-          docker load -i ${{ runner.temp }}/jupyter.tar
+          {% raw %}docker load -i ${{ runner.temp }}/jupyter.tar
 
           RAW_TAGS="${{ needs.build.outputs.tags }}"
+          echo "Raw tags: $RAW_TAGS"
           FIRST_TAG=$(echo "$RAW_TAGS" | tr -s '[:space:]' '\n' | grep -v '^$' | head -n 1)
+          echo "Using tag: $FIRST_TAG"
 
           for nb in ${{ env.TEST_NOTEBOOKS }}; do
             echo "Running notebook: $nb"
@@ -112,7 +111,6 @@ jobs:
               /bin/bash -c "jupyter execute \$HOME/north_test/$nb"
           done
           {% endraw %}
-
       - uses: docker/login-action@v3
         with:
           registry: {% raw %}${{ env.REGISTRY }}{% endraw %}
@@ -120,10 +118,8 @@ jobs:
           password: {% raw %}${{ secrets.GITHUB_TOKEN}}{% endraw %}
       - name: Push Jupyter Image
         run: |
-        {% raw %}
-          RAW_TAGS="${{ needs.build.outputs.tags }}"
+          {% raw %}RAW_TAGS="${{ needs.build.outputs.tags }}"
           for TAG in $RAW_TAGS; do
             echo "Pushing tag: $TAG"
             docker push "$TAG"
-          done
-        {% endraw %}
+          done{% endraw %}
