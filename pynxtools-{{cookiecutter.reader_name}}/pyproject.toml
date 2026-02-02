@@ -56,7 +56,8 @@ docs = [
 ]
 {% if cookiecutter.include_north_tools -%}
 north = [
-    "jupyterlab-h5web[full]>=7.1.1",
+    "jupyterlab",
+    "jupyterlab-h5web",
     "jupyterlab",
     "ipywidgets",
 ]

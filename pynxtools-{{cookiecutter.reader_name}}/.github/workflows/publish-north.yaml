@@ -13,7 +13,7 @@ env:
   REGISTRY: ghcr.io
   UV_VERSION: 0.9
   PYTHON_VERSION: 3.12
-  JUPYTER_VERSION: 2025-04-14
+  JUPYTER_VERSION: 2025-12-31
   NORTH_TOOL_DIR: src/{{cookiecutter.__module_name}}/nomad/north_tools/{{cookiecutter.north_tool_name}}
   TEST_DATA_DIR: tests/data/north_tools/{{cookiecutter.north_tool_name}}
   TEST_NOTEBOOKS: CommandLine.ipynb
@@ -78,7 +78,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: jupyter-image
-          path: {% raw %}${{ runner.temp }}{% endraw %}/jupyter.tar
+          path: {% raw %}${{ runner.temp }}{% endraw %}/jupyter.tar.gz
   test_and_push_image:
     name: Test Jupyter Image
     needs: build
@@ -96,7 +96,7 @@ jobs:
 
       - name: Load and test in Jupyter container
         run: |
-          {% raw %}docker load -i ${{ runner.temp }}/jupyter.tar
+          {% raw %}docker load -i ${{ runner.temp }}/jupyter.tar.gz
 
           RAW_TAGS="${{ needs.build.outputs.tags }}"
           echo "Raw tags: $RAW_TAGS"

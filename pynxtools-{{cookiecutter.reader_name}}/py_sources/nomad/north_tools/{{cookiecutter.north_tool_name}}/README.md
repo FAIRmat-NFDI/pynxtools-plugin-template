@@ -1,6 +1,6 @@
 # pynxtools-{{cookiecutter.reader_name}} - NORTH Jupyter tool
 
-This directory contains the NORTH tool configuration and Docker image for a Jupyter-based tool in NOMAD NORTH.
+This directory contains the NORTH tool configuration and Docker file for programmatic creation of a Jupyter-based NOMAD NORTH tool.
 
 ## Quick start
 
