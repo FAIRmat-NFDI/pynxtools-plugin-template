@@ -1,8 +1,9 @@
-
 import logging
+from typing import Optional
 import stat
 from pathlib import Path
 import shutil
+import subprocess
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("post_gen_project")
@@ -18,8 +19,9 @@ def remove(path: Path):
     elif path.is_dir():
         shutil.rmtree(path)
 
+
 if not {{cookiecutter.vscode_settings}}:
-    remove('.vscode')
+    remove(".vscode")
 
 scripts_dir = Path("scripts")
 
@@ -31,7 +33,13 @@ if scripts_dir.exists():
 else:
     logger.info("No scripts/ directory found — skipping chmod step.")
 
-def move_files(variant: str, save_path: Path, source_root: Path):
+
+def move_files(
+    variant: str,
+    save_path: Path,
+    source_root: Optional[Path] = None,
+    source_file: Optional[Path] = None,
+):
     """
     Move files from source_root/variant to save_path
     """
@@ -66,6 +74,7 @@ if __name__ == "__main__":
         for variant, condition in [
             ("example_uploads", "{{cookiecutter.include_nomad_example_upload}}"),
             ("apps", "{{cookiecutter.include_nomad_app}}"),
+            ("north_tools", "{{cookiecutter.include_north_tools}}"),
         ]
         if condition != "False"
     ]
@@ -90,9 +99,25 @@ if __name__ == "__main__":
 
             # # Copy test files
             for test_file in (PY_SOURCES / "tests").iterdir():
-                if test_file.is_file() and any(variant in test_file.name for variant in variants):
+                if test_file.is_file() and any(
+                    variant in test_file.name for variant in variants
+                ):
                     dst_file = tests / test_file.name
                     shutil.copy(test_file, dst_file)
                     logger.info("Copied test %s → %s", test_file, dst_file)
+
+            # Copy Test data files
+            for test_data_dir in (PY_SOURCES / "tests_data").iterdir():
+                if test_data_dir.is_dir() and variant in test_data_dir.name:
+                    dst_test_data_dir = root / "tests" / "data" / test_data_dir.name
+                    shutil.copytree(test_data_dir, dst_test_data_dir)
+                    logger.info(
+                        "Copied test data dir %s → %s",
+                        test_data_dir,
+                        dst_test_data_dir,
+                    )
+        if "north_tools" not in variants:
+            Path.unlink(root / ".dockerignore")
+            Path.unlink(root / ".github" / "workflows" / "publish-north.yaml")
 
         remove_temp_folders(ALL_TEMP_FOLDERS)
