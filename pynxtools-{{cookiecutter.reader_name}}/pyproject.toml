@@ -61,7 +61,7 @@ north = [
     "ipywidgets",
 ]
 {%- endif %}
-{% if cookiecutter.include_nomad_app or cookiecutter.include_nomad_example_upload -%}
+{% if cookiecutter.include_nomad_app or cookiecutter.include_nomad_example_upload or cookiecutter.include_north_tools -%}
 nomad = ["nomad-lab[infrastructure]>=1.4.1rc2"]
 {%- endif %}
 
