@@ -113,6 +113,16 @@ after you have initiated the cruft link.
 
 There is also a GitHub workflow that automatically creates a pull request in your repository if the template has changed (for this to work, your organization must allow automated pull requests.)
 
+In case new features are added to the template that require user input, you can run 
+
+```bash
+cruft update -i
+```
+
+`-i` for --cookiecutter-input to add the new features that require user input.
+
+Check all the generated files, if there are any git conflicts. Conflicting files will appear with name `<filename>.rej`. These conflicts need to be resolved in `<filename>` manually and the `<filename>.rej` file needs to be removed before committing.
+
 ## Git
 
 The cookiecutter template will only create the structure of the repository. We strongly recommend using Git for code versioning. After the cruft creation, run
