@@ -73,7 +73,7 @@ jobs:
           push: false
           tags: {% raw %}${{ steps.meta.outputs.tags }}{% endraw %}
           labels: {% raw %}${{ steps.meta.outputs.labels }}{% endraw %}
-          outputs: type=docker,dest={% raw %}${{ runner.temp }}{% endraw %}/jupyter.tar
+          outputs: type=docker,dest={% raw %}${{ runner.temp }}{% endraw %}/jupyter.tar.gz
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:

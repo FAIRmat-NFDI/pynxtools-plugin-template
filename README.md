@@ -121,7 +121,7 @@ cruft update -i
 
 `i` for --cookiecutter-input to add the new features that require user input.
 
-Check the file, if there any git conlicts, the conflicting file will be apeared as `<filename>.rej` which needs to be resolved manually.
+Check all the generated files, if there are any git conflicts. Though conflicting files will be appeared with name `<filename>.rej` which needs to be resolved with `<filename>` manually.
 
 ## Git
 
