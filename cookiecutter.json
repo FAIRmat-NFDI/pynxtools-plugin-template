@@ -6,8 +6,8 @@
   "reader_class": "{{ cookiecutter.technique }}Reader",
   "author_name": "",
   "author_email": "fairmat@physik.hu-berlin.de",
-  "github_username": "",
   "organization_name": "fairmat-nfdi",
+  "github_username": "",
   "license": [
     "Apache Software License 2.0",
     "BSD-3",
@@ -29,6 +29,7 @@
   "_copy_without_render": ["*.html"],
   "__prompts__": {
     "github_username": "GitHub username (to store the Docker image on GitHub Container Registry)",
+    "organization_name": "GitHub organization name used for the Docker image (leave empty to use your username).",
     "reader_name": "Name of your reader (short, lowercase, no spaces)",
     "supported_nxdl": "Primary application definition this reader supports",
     "short_description": "Short description",
