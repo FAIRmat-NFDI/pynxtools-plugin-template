@@ -12,8 +12,10 @@ ALL_TEMP_FOLDERS = ["licenses", "py_sources"]
 PY_SOURCES = Path("py_sources")
 
 
-def remove(path: Path):
+def remove(path: Path | str):
     """Remove file or directory if it exists."""
+    if isinstance(path, str):
+        path = Path(path)
     if path.is_file():
         path.unlink()
     elif path.is_dir():
