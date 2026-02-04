@@ -101,7 +101,7 @@ version_scheme = "no-guess-dev"
 local_scheme = "node-and-date"
 
 [tool.ruff]
-include = ["src/{{cookiecutter.__module_name}}/*.py", "tests/*.py"]
+include = ["src/{{cookiecutter.__module_name}}/**/*.py", "tests/**/*.py"]
 line-length = 88
 indent-width = 4
 
