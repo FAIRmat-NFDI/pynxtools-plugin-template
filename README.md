@@ -119,7 +119,7 @@ In case new features are added to the template that require user input, you can 
 cruft update -i
 ```
 
-`i` for --cookiecutter-input to add the new features that require user input.
+`-i` for --cookiecutter-input to add the new features that require user input.
 
 Check all the generated files, if there are any git conflicts. Conflicting files will appear with name `<filename>.rej`. These conflicts need to be resolved in `<filename>` manually and the `<filename>.rej` file needs to be removed before committing.
 
