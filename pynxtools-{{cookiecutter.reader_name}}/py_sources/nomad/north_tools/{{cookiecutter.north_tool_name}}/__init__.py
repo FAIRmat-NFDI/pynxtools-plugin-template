@@ -3,7 +3,7 @@ from nomad.config.models.plugins import NorthToolEntryPoint
 
 tool = NORTHTool(
     short_description='Jupyter Notebook server in NOMAD NORTH for NOMAD and pynxtools plugin {{cookiecutter.__package_name}}.',
-    image='ghcr.io/{{cookiecutter.github_username}}/{{cookiecutter.__package_name}}/jupyter:latest',
+    image='ghcr.io/{{cookiecutter.github_username or cookiecutter.organization_name}}/{{cookiecutter.__package_name}}/jupyter:latest',
     description='Jupyter Notebook server in NOMAD NORTH for NOMAD and pynxtools plugin {{cookiecutter.__package_name}}.',
     external_mounts=[],
     file_extensions=['ipynb', 'nxs'],
