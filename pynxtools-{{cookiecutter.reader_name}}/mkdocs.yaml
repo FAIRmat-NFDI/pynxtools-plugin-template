@@ -1,7 +1,7 @@
 site_name: Documentation for {{cookiecutter.__package_name}}
 site_description: |
   The documentation for the {{cookiecutter.__package_name}} plugin.
-site_author: The NOMAD Authors
+site_author: {{cookiecutter.author_name}}
 repo_url: https://github.com/FAIRmat-NFDI/{{cookiecutter.__package_name}}
 edit_uri: ""
 
