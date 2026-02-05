@@ -60,13 +60,13 @@ cruft link gh:FAIRmat-NFDI/pynxtools-plugin-template.git
 
 ## Cookiecutter input
 
-Cookiecutter prompts you for information regarding your plugin:
+Cookiecutter prompts you for information regarding your plugin.
 
 ```no-highlight
   [1/10] Name of your reader (short, lowercase, no spaces) (): test
   [2/10] Primary application definition this reader supports (NXtest): NXtest
   [3/10] Short description (): My pynxtools test plugin
-  [4/10] Author's full name (): John Doe
+  [4/10] Author's full name (The NOMAD Authors): John Doe
   [5/10] Author's email address (fairmat@physik.hu-berlin.de): john.doe@email.com
   [6/10] Select license
     1 - Apache Software License 2.0
