@@ -120,6 +120,6 @@ if __name__ == "__main__":
                     )
         if "north_tools" not in variants:
             Path.unlink(root / ".dockerignore")
-            Path.unlink(root / ".github" / "workflows" / "publish-north.yaml")
+            Path.unlink(root / ".github" / "workflows" / "publish-north.yml")
 
         remove_temp_folders(ALL_TEMP_FOLDERS)
