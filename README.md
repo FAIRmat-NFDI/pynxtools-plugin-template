@@ -60,7 +60,7 @@ cruft link gh:FAIRmat-NFDI/pynxtools-plugin-template.git
 
 ## Cookiecutter input
 
-Cookiecutter prompts you for information regarding your plugin.
+Cookiecutter prompts you for information regarding your plugin:
 
 ```no-highlight
   [1/10] Name of your reader (short, lowercase, no spaces) (): test
