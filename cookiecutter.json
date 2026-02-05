@@ -29,7 +29,7 @@
   "_copy_without_render": ["*.html"],
   "__prompts__": {
     "github_username": "GitHub username (used for Docker image, leave empty to use your organization name)",
-    "organization_name": "GitHub organization name used for the Docker image.",
+    "organization_name": "GitHub organization name (used as fallback if username is not provided).",
     "reader_name": "Name of your reader (short, lowercase, no spaces)",
     "supported_nxdl": "Primary application definition this reader supports",
     "short_description": "Short description",
