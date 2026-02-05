@@ -6,8 +6,8 @@
   "reader_class": "{{ cookiecutter.technique }}Reader",
   "author_name": "",
   "author_email": "fairmat@physik.hu-berlin.de",
-  "organization_name": "fairmat-nfdi",
   "github_username": "",
+  "organization_name": "fairmat-nfdi",
   "license": [
     "Apache Software License 2.0",
     "BSD-3",
