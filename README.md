@@ -63,37 +63,56 @@ cruft link gh:FAIRmat-NFDI/pynxtools-plugin-template.git
 Cookiecutter prompts you for information regarding your plugin:
 
 ```no-highlight
-  [1/10] Name of your reader (short, lowercase, no spaces) (): test
-  [2/10] Primary application definition this reader supports (NXtest): NXtest
-  [3/10] Short description (): My pynxtools test plugin
-  [4/10] Author's full name (The NOMAD Authors): John Doe
-  [5/10] Author's email address (fairmat@physik.hu-berlin.de): john.doe@email.com
-  [6/10] Select license
+  [1/16] Name of your reader (short, lowercase, no spaces) (): test
+  [2/16] Primary application definition this reader supports (NXtest):
+  [3/16] Short description (): My pynxtools test plugin
+  [4/16] technique (TEST): Test
+  [5/16] reader_class (TestReader):
+  [6/16] Author's full name (The NOMAD Authors):
+  [7/16] Author's email address (fairmat@physik.hu-berlin.de):
+  [8/16] GitHub username (used for Docker image, leave empty to use your organization name) (): FAIRmat-NFDI
+  [9/16] GitHub organization name (used as fallback if username is not provided). (fairmat-nfdi):
+  [10/16] Select license
     1 - Apache Software License 2.0
     2 - BSD-3
     3 - GNU GPL v3.0+
     4 - MIT
     5 - Mozilla Public License Version 2.0
-    Choose from [1/2/3/4/5] (1): 1
-  [7/10] Zenodo record (last number in DOI, if available) ():
-  [8/10] Include VSCode settings? [y/n] (y): y
-  [9/10] Include a NOMAD app entry point? [y/n] (y): y
-  [10/10] Include a NOMAD example upload entry point? [y/n] (y): y
-INFO:post_gen_project:Copied py_sources/nomad/README.md → /home/lukaspie/fairmat/pynxtools-plugin-template/pynxtools-test/src/pynxtools_test/nomad/README.md
-INFO:post_gen_project:Copied py_sources/nomad/__init__.py → /home/lukaspie/fairmat/pynxtools-plugin-template/pynxtools-test/src/pynxtools_test/nomad/__init__.py
-INFO:post_gen_project:Moving example_uploads files to /home/lukaspie/fairmat/pynxtools-plugin-template/pynxtools-test/src/pynxtools_test/nomad/example_uploads
+    Choose from [1/2/3/4/5] (1):
+  [11/16] Zenodo record (last number in DOI, if available) ():
+  [12/16] Include VSCode settings? [y/n] (y): y
+  [13/16] Include a NOMAD app entry point? [y/n] (y): y
+  [14/16] Include a NOMAD example upload entry point? [y/n] (y): y
+  [15/16] Include NOMAD North tool? [y/n] (n): y
+  [16/16] Name of the NOMAD North tool, if include NOMAD North tool is 'y' (test): y
+INFO:post_gen_project:Made executable: scripts/generate_custom_dict.sh
+INFO:post_gen_project:Made executable: scripts/generate_reference_files.sh
+INFO:post_gen_project:Copied py_sources/nomad/__init__.py → /home/pynxtools-test/src/pynxtools_test/nomad/__init__.py
+INFO:post_gen_project:Moving example_uploads files to /home/pynxtools-test/src/pynxtools_test/nomad/example_uploads
 INFO:post_gen_project:py_sources/nomad/example_uploads
-INFO:post_gen_project:py_sources/nomad/example_uploads/README.md
 INFO:post_gen_project:py_sources/nomad/example_uploads/__init__.py
-INFO:post_gen_project:Copied test py_sources/tests/test_nomad_apps.py → /home/lukaspie/fairmat/pynxtools-plugin-template/pynxtools-test/tests/test_nomad_apps.py
-INFO:post_gen_project:Copied test py_sources/tests/test_nomad_example_uploads.py → /home/lukaspie/fairmat/pynxtools-plugin-template/pynxtools-test/tests/test_nomad_example_uploads.py
-INFO:post_gen_project:Moving apps files to /home/lukaspie/fairmat/pynxtools-plugin-template/pynxtools-test/src/pynxtools_test/nomad/apps
+INFO:post_gen_project:py_sources/nomad/example_uploads/example/README.md
+INFO:post_gen_project:Copied test py_sources/tests/test_nomad_apps.py → /home/pynxtools-test/tests/test_nomad_apps.py
+INFO:post_gen_project:Copied test py_sources/tests/test_nomad_example_uploads.py → /home/pynxtools-test/tests/test_nomad_example_uploads.py
+INFO:post_gen_project:Copied test py_sources/tests/test_nomad_north_tools.py → /home/pynxtools-test/tests/test_nomad_north_tools.py
+INFO:post_gen_project:Moving apps files to /home/pynxtools-test/src/pynxtools_test/nomad/apps
 INFO:post_gen_project:py_sources/nomad/apps
 INFO:post_gen_project:py_sources/nomad/apps/__init__.py
-INFO:post_gen_project:Copied test py_sources/tests/test_nomad_apps.py → /home/lukaspie/fairmat/pynxtools-plugin-template/pynxtools-test/tests/test_nomad_apps.py
-INFO:post_gen_project:Copied test py_sources/tests/test_nomad_example_uploads.py → /home/lukaspie/fairmat/pynxtools-plugin-template/pynxtools-test/tests/test_nomad_example_uploads.py
+INFO:post_gen_project:Copied test py_sources/tests/test_nomad_apps.py → /home/pynxtools-test/tests/test_nomad_apps.py
+INFO:post_gen_project:Copied test py_sources/tests/test_nomad_example_uploads.py → /home/pynxtools-test/tests/test_nomad_example_uploads.py
+INFO:post_gen_project:Copied test py_sources/tests/test_nomad_north_tools.py → /home/pynxtools-test/tests/test_nomad_north_tools.py
+INFO:post_gen_project:Moving north_tools files to /home/pynxtools-test/src/pynxtools_test/nomad/north_tools
+INFO:post_gen_project:py_sources/nomad/north_tools
+INFO:post_gen_project:py_sources/nomad/north_tools/__init__.py
+INFO:post_gen_project:py_sources/nomad/north_tools/y/Dockerfile
+INFO:post_gen_project:py_sources/nomad/north_tools/y/README.md
+INFO:post_gen_project:py_sources/nomad/north_tools/y/__init__.py
+INFO:post_gen_project:Copied test py_sources/tests/test_nomad_apps.py → /home/pynxtools-test/tests/test_nomad_apps.py
+INFO:post_gen_project:Copied test py_sources/tests/test_nomad_example_uploads.py → /home/pynxtools-test/tests/test_nomad_example_uploads.py
+INFO:post_gen_project:Copied test py_sources/tests/test_nomad_north_tools.py → /home/pynxtools-test/tests/test_nomad_north_tools.py
+INFO:post_gen_project:Copied test data dir py_sources/tests_data/north_tools → /home/pynxtools-test/tests/data/north_tools
 INFO:post_gen_project:Removing temporary folder: licenses
-INFO:post_gen_project:Removing temporary folder: py_sources
+INFO:post_gen_project:Removing temporary folder: py_sourc
 ```
 
 There you go - you just created a minimal `pynxtools` plugin.
