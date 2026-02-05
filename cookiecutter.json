@@ -4,7 +4,7 @@
   "short_description": "",
   "technique": "{{ cookiecutter.reader_name|upper }}",
   "reader_class": "{{ cookiecutter.technique }}Reader",
-  "author_name": "",
+  "author_name": "The NOMAD Authors",
   "author_email": "fairmat@physik.hu-berlin.de",
   "github_username": "",
   "organization_name": "fairmat-nfdi",
