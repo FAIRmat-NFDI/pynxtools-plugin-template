@@ -37,7 +37,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "mypy",
-    "ruff>=0.14.0",
+    "ruff>=0.15.0",
     "pytest",
     "pytest-cov",
     "pytest-timeout",
@@ -55,15 +55,15 @@ docs = [
     "pymdown-extensions",
     "mkdocs-click"
 ]
-{% if cookiecutter.include_north_tools -%}
+{%- if cookiecutter.include_nomad_app or cookiecutter.include_nomad_example_upload or cookiecutter.include_north_tools -%}
+nomad = ["nomad-lab[infrastructure]>=1.4.1rc2"]
+{%- endif %}
+{%- if cookiecutter.include_north_tools -%}
 north = [
     "jupyterlab-h5web",
     "jupyterlab",
     "ipywidgets",
 ]
-{%- endif %}
-{% if cookiecutter.include_nomad_app or cookiecutter.include_nomad_example_upload or cookiecutter.include_north_tools -%}
-nomad = ["nomad-lab[infrastructure]>=1.4.1rc2"]
 {%- endif %}
 
 [project.urls]
@@ -78,7 +78,7 @@ nomad = ["nomad-lab[infrastructure]>=1.4.1rc2"]
 {%- if cookiecutter.include_nomad_app %}
 {{cookiecutter.__nomad_app}} = "{{cookiecutter.__module_name}}.nomad.apps:{{cookiecutter.__nomad_app}}"
 {%- endif %}
-{% if cookiecutter.include_north_tools %}
+{%- if cookiecutter.include_north_tools %}
 {{cookiecutter.north_tool_name}} = "{{cookiecutter.__module_name}}.nomad.north_tools.{{cookiecutter.north_tool_name}}:{{cookiecutter.__north_tool_EP_name}}"
 {%- endif %}
 {%- if cookiecutter.include_nomad_example_upload %}

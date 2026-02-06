@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.0
+    rev: v0.15.0
     hooks:
       - id: ruff-check
         files: ^(src/{{ cookiecutter.__module_name }}|tests)/.*\.py$
@@ -16,7 +16,7 @@ repos:
     rev: v2.37.3
     hooks:
       - id: pyupgrade
-        args: [--py36-plus] # modernizes syntax for Python 3.6+
+        args: [--py310-plus] # modernizes syntax for Python 3.6+
 
   - repo: https://github.com/kynan/nbstripout
     rev: 0.6.0
