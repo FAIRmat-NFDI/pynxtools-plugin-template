@@ -5,3 +5,6 @@ include pyproject.toml README.md
 {%- if cookiecutter.include_nomad_example_upload %}
 graft src/{{cookiecutter.__module_name}}/nomad/example_uploads
 {%- endif %}
+{%- if cookiecutter.include_north_tools %}
+graft src/{{cookiecutter.__module_name}}/nomad/north_tools/
+{%- endif %}
