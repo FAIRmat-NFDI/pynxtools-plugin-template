@@ -19,6 +19,7 @@
 from typing import Any
 
 from pynxtools.dataconverter.readers.base.reader import BaseReader
+from {{cookiecutter.__module_name}}.utils.versioning import get_pynxtools_plugin_version
 
 
 class {{cookiecutter.reader_class}}(BaseReader):
@@ -35,6 +36,11 @@ class {{cookiecutter.reader_class}}(BaseReader):
         """
         Read method to prepare the template.
         """
+
+        entry_id = 1
+        template_path_prefix = f"/ENTRY[entry{entry_id}]/PROFILING[profiling]/PROGRAM[program1]"
+        template[f"{template_path_prefix}/program"] = f"pynxtools_{{cookiecutter.reader_name}}"
+        template[f"{template_path_prefix}/program/@version"] = f"{get_pynxtools_plugin_version()}"
         return template
 
 
