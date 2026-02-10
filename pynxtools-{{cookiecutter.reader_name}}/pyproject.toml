@@ -104,6 +104,7 @@ git_describe_command = ["git", "describe", "--dirty", "--long", "--tags", "--mat
 
 [tool.ruff]
 include = ["src/{{cookiecutter.__module_name}}/**/*.py", "tests/**/*.py"]
+exclude = ["src/{{cookiecutter.__module_name}}/_version.py"]
 line-length = 88
 indent-width = 4
 
@@ -131,9 +132,6 @@ ignore = [
     "PLW2901", # redefined-loop-name
     "PLR1714", # consider-using-in
     "PLR5501", # else-if-used
-]
-exclude = [
-  "src/**/_version.py",
 ]
 fixable = ["ALL"]
 isort.split-on-trailing-comma = false
