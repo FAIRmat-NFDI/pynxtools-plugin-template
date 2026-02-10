@@ -84,6 +84,11 @@ north = [
 {%- if cookiecutter.include_nomad_example_upload %}
 {{cookiecutter.__nomad_example}} = "{{cookiecutter.__module_name}}.nomad.example_uploads:{{cookiecutter.__nomad_example}}"
 {%- endif %}
+
+[tool.uv]
+extra-index-url = [
+    "https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/simple",
+]
 {%- endif %}
 
 [tool.setuptools.packages.find]
