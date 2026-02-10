@@ -19,6 +19,7 @@
 
 from {{cookiecutter.reader_name}}._version import version as pynxtools_plugin_version
 
+
 def get_pynxtools_plugin_version() -> str:
     """Get the version of this pynxtools-plugin."""
 
