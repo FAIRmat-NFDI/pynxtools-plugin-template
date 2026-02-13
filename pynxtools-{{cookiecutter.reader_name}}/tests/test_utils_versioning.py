@@ -17,6 +17,7 @@
 #
 
 import re
+
 from {{cookiecutter.__module_name}}.utils.versioning import get_pynxtools_plugin_version
 
 
