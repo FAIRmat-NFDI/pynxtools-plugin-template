@@ -20,8 +20,6 @@ from typing import Any
 
 from pynxtools.dataconverter.readers.base.reader import BaseReader
 
-from {{cookiecutter.__module_name}}.utils.versioning import get_pynxtools_plugin_version
-
 
 class {{cookiecutter.reader_class}}(BaseReader):
     """Reader for {{cookiecutter.technique}}."""
@@ -37,20 +35,6 @@ class {{cookiecutter.reader_class}}(BaseReader):
         """
         Read method to prepare the template.
         """
-
-        # the dataconverter of the pynxtools core package stores its version
-        # under creator and creator_version within the NeXus/HDF5 file's NXroot instance
-        # begin of example code how to also store the version of the actual pynxtools-plugin used follows
-        entry_id = 1  # changeme
-        template_path_prefix = (
-            f"/ENTRY[entry{entry_id}]/CS_PROFILING[profiling]/PROGRAM[program1]"
-        )
-        template[f"{template_path_prefix}/program"] = f"pynxtools_{{cookiecutter.reader_name}}"
-        template[f"{template_path_prefix}/program/@version"] = (
-            f"{get_pynxtools_plugin_version()}"
-        )
-        # end of example code
-
         return template
 
 

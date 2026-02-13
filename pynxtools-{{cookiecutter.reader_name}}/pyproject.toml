@@ -99,12 +99,9 @@ where = [
 [tool.setuptools_scm]
 version_scheme = "no-guess-dev"
 local_scheme = "node-and-date"
-write_to = "src/{{cookiecutter.__module_name}}/_version.py"
-git_describe_command = ["git", "describe", "--dirty", "--long", "--tags", "--match", "*[0-9]*", "--abbrev=8"]
 
 [tool.ruff]
 include = ["src/{{cookiecutter.__module_name}}/**/*.py", "tests/**/*.py"]
-exclude = ["src/{{cookiecutter.__module_name}}/_version.py"]
 line-length = 88
 indent-width = 4
 
