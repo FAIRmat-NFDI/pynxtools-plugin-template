@@ -76,6 +76,11 @@ class {{cookiecutter.reader_class}}(MultiFormatReader):
     # File handlers — add one per supported input format.
     # ------------------------------------------------------------------
 
+    # def handle_eln_file(self, file_path: str) -> dict[str, Any]:
+    #     """Read an ELN file and store data on self for later use."""
+    #     ...
+    #     return {}
+
     # def _handle_ext_file(self, file_path: str) -> dict[str, Any]:
     #     """Read a .ext file and store data on self for later use."""
     #     ...
@@ -85,8 +90,16 @@ class {{cookiecutter.reader_class}}(MultiFormatReader):
     # Callbacks — called when the config file contains @attrs / @data tokens.
     # ------------------------------------------------------------------
 
+    def get_eln(self, key: str, path: str) -> Any:
+        """Return ELN metadata from ``path`` for ``@attrs:path`` tokens."""
+        return None
+
     def get_attr(self, key: str, path: str) -> Any:
         """Return instrument metadata from ``path`` for ``@attrs:path`` tokens."""
+        return None
+
+    def get_data_dims(self, key: str, path: str) -> Any:
+        """Return dimensions from ``path`` for ``@data:path`` tokens."""
         return None
 
     def get_data(self, key: str, path: str) -> Any:
