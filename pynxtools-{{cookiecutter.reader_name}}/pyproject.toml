@@ -79,7 +79,7 @@ north = [
 {{cookiecutter.__nomad_app}} = "{{cookiecutter.__module_name}}.nomad.apps:{{cookiecutter.__nomad_app}}"
 {%- endif %}
 {%- if cookiecutter.include_north_tools %}
-{{cookiecutter.__north_tool_entry_point}} = "{{cookiecutter.__module_name}}.nomad.north_tools.{{cookiecutter.north_tool_name}}:{{cookiecutter.__north_tool_entry_point}}"
+{{cookiecutter.__nomad_north_tool}} = "{{cookiecutter.__module_name}}.nomad.north_tools.{{cookiecutter.north_tool_name}}:{{cookiecutter.__north_tool_entry_point}}"
 {%- endif %}
 {%- if cookiecutter.include_nomad_example_upload %}
 {{cookiecutter.__nomad_example}} = "{{cookiecutter.__module_name}}.nomad.example_uploads:{{cookiecutter.__nomad_example}}"
