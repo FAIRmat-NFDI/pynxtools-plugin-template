@@ -16,26 +16,23 @@
 # limitations under the License.
 #
 from nomad.config.models.north import NORTHTool
-from nomad.config.models.plugins import NorthToolEntryPoint 
-# TODO: replace by NORTHToolEntryPoint
+from nomad.config.models.plugins import NorthToolEntryPoint
 
 tool = NORTHTool(
-    short_description='NORTH tool for pynxtools plugin {{cookiecutter.__package_name}}.',
-    image='ghcr.io/{{cookiecutter.github_username or cookiecutter.organization_name}}/{{cookiecutter.__package_name}}/jupyter:latest',
-    description='NORTH tool for pynxtools plugin {{cookiecutter.__package_name}}.',
+    short_description="NORTH tool for pynxtools plugin {{cookiecutter.__package_name}}.",
+    image="ghcr.io/{{cookiecutter.github_username or cookiecutter.organization_name}}/{{cookiecutter.__package_name}}/jupyter:latest",
+    description="NORTH tool for pynxtools plugin {{cookiecutter.__package_name}}.",
     external_mounts=[],
-    file_extensions=['ipynb', 'nxs'],
-    icon='logo/jupyter.svg',
-    image_pull_policy='Always',
-    default_url='/lab',
-    maintainer=[{'email': '{{cookiecutter.author_email}}', 'name': '{{cookiecutter.author_name}}'}],
-    mount_path='/home/jovyan',
-    path_prefix='lab/tree',
+    file_extensions=["ipynb", "nxs"],
+    icon="logo/jupyter.svg",
+    image_pull_policy="Always",
+    default_url="/lab",
+    maintainer=[{"email": "{{cookiecutter.author_email}}", "name": "{{cookiecutter.author_name}}"}],
+    mount_path="/home/jovyan",
+    path_prefix="lab/tree",
     privileged=False,
     with_path=True,
-    display_name='{{cookiecutter.reader_name}}',
+    display_name="{{cookiecutter.reader_name}}",
 )
 
-{{cookiecutter.north_tool_name}} = NorthToolEntryPoint(
-    id_url_safe='{{cookiecutter.__module_name}}_{{cookiecutter.north_tool_name}}', north_tool=tool
-)
+{{cookiecutter.north_tool_name}} = NorthToolEntryPoint(id_url_safe="{{cookiecutter.__module_name}}_{{cookiecutter.north_tool_name}}", north_tool=tool)

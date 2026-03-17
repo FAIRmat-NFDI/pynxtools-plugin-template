@@ -12,12 +12,8 @@ except ImportError:
 
 
 def test_importing_north_tool():
-    # this will raise an exception if pydantic model validation fails for the north tool
-    from {{cookiecutter.__module_name}}.nomad.north_tools.{{cookiecutter.north_tool_name}} import (
-        {{cookiecutter.north_tool_name}},
-    )
+    from {{cookiecutter.__module_name}}.nomad.north_tools import {{cookiecutter.north_tool_name}}  # noqa: PLC0415
 
-    assert (
-        {{cookiecutter.north_tool_name}}.id_url_safe == '{{cookiecutter.__module_name}}_{{cookiecutter.reader_name}}'
-        or {{cookiecutter.north_tool_name}}.id == 'nomad-north-{{cookiecutter.reader_name}}'
-    ), 'NORTHtool entry point has incorrect id or id_url_safe'
+    assert {{cookiecutter.north_tool_name}}.id_url_safe == "{{cookiecutter.__module_name}}_{{cookiecutter.reader_name}}" or {{cookiecutter.north_tool_name}}.id == "nomad-north-{{cookiecutter.reader_name}}", (
+        "NORTHtool entry point has incorrect id or id_url_safe"
+    )

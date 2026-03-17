@@ -91,20 +91,22 @@ def test_run_cookiecutter_and_plugin_tests(
     else:
         assert not result.project_path.joinpath("src", module_name, "nomad", "example_uploads", "__init__.py").is_file()
 
-    north_tool_name = cookies.get("north_tool_name")
+    north_tool_folder = result.context["__nomad_north_tool"]
     
     if include_north_tools:
         assert result.project_path.joinpath("src", module_name, "nomad", "north_tools", "__init__.py").is_file()
-        assert result.project_path.joinpath("src", module_name, "nomad", "north_tools", north_tool_name).is_dir()
-        assert result.project_path.joinpath("src", module_name, "nomad", "north_tools", north_tool_name, "__init__.py").is_file()
+        assert result.project_path.joinpath("src", module_name, "nomad", "north_tools", north_tool_folder).is_dir()
+        assert result.project_path.joinpath("src", module_name, "nomad", "north_tools", north_tool_folder, "__init__.py").is_file()
+        assert result.project_path.joinpath("src", module_name, "nomad", "north_tools", north_tool_folder, "Dockerfile").is_file()
         assert result.project_path.joinpath(".dockerignore").is_file()
-        assert result.project_path.joinpath(".github", "workflows", "publish_north.yaml").is_file()
+        assert result.project_path.joinpath(".github", "workflows", "publish-north.yml").is_file()
     else:
         assert not result.project_path.joinpath("src", module_name, "nomad", "north_tools", "__init__.py").is_file()
-        assert not result.project_path.joinpath("src", module_name, "nomad", "north_tools", north_tool_name).is_dir()
-        assert not result.project_path.joinpath("src", module_name, "nomad", "north_tools", north_tool_name, "__init__.py").is_file()
+        assert not result.project_path.joinpath("src", module_name, "nomad", "north_tools", north_tool_folder).is_dir()
+        assert not result.project_path.joinpath("src", module_name, "nomad", "north_tools", north_tool_folder, "__init__.py").is_file()
+        assert not result.project_path.joinpath("src", module_name, "nomad", "north_tools", north_tool_folder, "Dockerfile").is_file()
         assert not result.project_path.joinpath(".dockerignore").is_file()
-        assert not result.project_path.joinpath(".github", "workflows", "publish_north.yaml").is_file()
+        assert not result.project_path.joinpath(".github", "workflows", "publish-north.yml").is_file()
 
     # Initialize Git so setuptools_scm can determine the version
     initialize_git(project_path)
