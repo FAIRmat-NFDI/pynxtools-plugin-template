@@ -18,6 +18,6 @@ def test_importing_north_tool():
     )
 
     assert (
-        {{cookiecutter.__north_tool_entry_point}}.id_url_safe == '{{cookiecutter.__module_name}}_{{cookiecutter.reader_name}}'
-        or {{cookiecutter.__north_tool_entry_point}}.id == 'nomad-north-{{cookiecutter.reader_name}}'
+        {{cookiecutter.north_tool_name}}.id_url_safe == '{{cookiecutter.__module_name}}_{{cookiecutter.reader_name}}'
+        or {{cookiecutter.north_tool_name}}.id == 'nomad-north-{{cookiecutter.reader_name}}'
     ), 'NORTHtool entry point has incorrect id or id_url_safe'
