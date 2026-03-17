@@ -105,8 +105,8 @@ def test_run_cookiecutter_and_plugin_tests(
         assert not result.project_path.joinpath("src", module_name, "nomad", "north_tools", north_tool_folder).is_dir()
         assert not result.project_path.joinpath("src", module_name, "nomad", "north_tools", north_tool_folder, "__init__.py").is_file()
         assert not result.project_path.joinpath("src", module_name, "nomad", "north_tools", north_tool_folder, "Dockerfile").is_file()
-        assert not result.project_path.joinpath(".dockerignore").is_file()
-        assert not result.project_path.joinpath(".github", "workflows", "publish-north.yml").is_file()
+        assert not result.project_path.joinpath(".dockerignore").exists()
+        assert not result.project_path.joinpath(".github", "workflows", "publish-north.yml").exists()
 
     # Initialize Git so setuptools_scm can determine the version
     initialize_git(project_path)
