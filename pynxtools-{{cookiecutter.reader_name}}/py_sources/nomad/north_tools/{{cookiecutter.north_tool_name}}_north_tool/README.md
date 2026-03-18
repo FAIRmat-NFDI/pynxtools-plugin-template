@@ -1,6 +1,6 @@
-# {{cookiecutter.north_tool_name}} - NORTH Jupyter tool
+# {{cookiecutter.north_tool_name}} - NORTH tool
 
-This directory contains the NORTH tool configuration and Dockerfile for programmatic creation of a Jupyter-based NOMAD NORTH tool.
+This directory contains the NORTH tool configuration and Dockerfile for programmatic creation of a NOMAD NORTH tool.
 
 ## Quick start
 

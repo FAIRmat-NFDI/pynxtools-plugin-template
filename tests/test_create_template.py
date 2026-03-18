@@ -112,5 +112,5 @@ def test_run_cookiecutter_and_plugin_tests(
     initialize_git(project_path)
 
     # Only run tox if the project has any of the Nomad components
-    if include_nomad_app or include_nomad_example_upload:
+    if include_nomad_app or include_nomad_example_upload or include_north_tools:
         run_tox(project_path)
