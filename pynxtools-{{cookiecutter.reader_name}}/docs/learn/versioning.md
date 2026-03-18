@@ -5,5 +5,5 @@ Keeping track of versions is essential for every software and semantic data mode
 ## `pynxtools-plugin` version
 
 We consider it best practice that also each plugin of `pynxtools` writes its version as a `programID` instance of [`NXprogram`](https://github.com/FAIRmat-NFDI/nexus_definitions/blob/fairmat/base_classes/NXprogram.nxdl.xml). `ID` serves as a placeholder that can be either omitted or replaced by an integer if multiple programs need to be distinguished. Counting should start at one, i.e., `program` or `program1` are preferred options.
-Specifically, the field `program` should store the distribution (package) name. The attribute `program/@version` should store a version string following PEP440.
+Specifically, the field `program` inside the `programID` instance should store the distribution (package) name. The attribute `program/@version` should store a version string following [PEP440](https://peps.python.org/pep-0440/).
 

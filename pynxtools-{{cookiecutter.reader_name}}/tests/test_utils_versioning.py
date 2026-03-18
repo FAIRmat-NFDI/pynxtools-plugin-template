@@ -18,11 +18,11 @@
 
 import re
 
-from {{cookiecutter.__module_name}}.utils.versioning import get_pynxtools_plugin_version
+from {{cookiecutter.__module_name}} import get_{{cookiecutter.__module_name}}_version
 
 
-def test_get_pynxtools_plugin_version():
-    version = get_pynxtools_plugin_version()
+def test_get_{{cookiecutter.__module_name}}_version():
+    version = get_{{cookiecutter.__module_name}}_version()
     assert version != "unknown_version"
     assert re.compile(
         r"""
