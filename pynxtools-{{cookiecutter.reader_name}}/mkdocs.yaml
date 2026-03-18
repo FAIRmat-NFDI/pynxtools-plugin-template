@@ -10,6 +10,8 @@ nav:
   - Tutorials:
     - tutorial/installation.md
     - tutorial/contributing.md
+  - Learning:
+    - learn/versioning.md
 
 plugins:
   - search
