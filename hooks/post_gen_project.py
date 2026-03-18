@@ -3,10 +3,9 @@ from typing import Optional
 import stat
 from pathlib import Path
 import shutil
-import subprocess
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("post_gen_project")
+logger: logging.Logger = logging.getLogger("post_gen_project")
 
 ALL_TEMP_FOLDERS = ["licenses", "py_sources"]
 PY_SOURCES = Path("py_sources")
@@ -81,9 +80,9 @@ if __name__ == "__main__":
         if condition != "False"
     ]
     if variants:
-        module_name = f"pynxtools_{{cookiecutter.reader_name}}"
+        module_name = "pynxtools_{{cookiecutter.reader_name}}"
         src_nomad = root / "src" / module_name / "nomad"
-        tests = root / "tests"
+        tests = root / "tests" / "nomad"
 
         src_nomad.mkdir(parents=True, exist_ok=True)
 
@@ -99,11 +98,10 @@ if __name__ == "__main__":
             src_save_path.mkdir(parents=True, exist_ok=True)
             move_files(variant, src_save_path, PY_SOURCES / "nomad")
 
-            # # Copy test files
-            for test_file in (PY_SOURCES / "tests").iterdir():
-                if test_file.is_file() and any(
-                    variant in test_file.name for variant in variants
-                ):
+            # Copy test files
+            tests.mkdir(parents=True, exist_ok=True)
+            for test_file in (PY_SOURCES / "tests" / "nomad").iterdir():
+                if test_file.is_file() and any(variant in test_file.name for variant in variants):
                     dst_file = tests / test_file.name
                     shutil.copy(test_file, dst_file)
                     logger.info("Copied test %s → %s", test_file, dst_file)
