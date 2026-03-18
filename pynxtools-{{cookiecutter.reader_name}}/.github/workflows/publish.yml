@@ -5,9 +5,18 @@ on:
     types: [published]
 
 env:
-  python-version: 3.12
+  python-version: 3.12{% if cookiecutter.include_north_tools %}
+  IMAGE: "ghcr.io/{{cookiecutter.github_username|lower}}/{{cookiecutter.__package_name}}"
+{% endif %}
 
 jobs:
+  {% if cookiecutter.include_north_tools %}
+  build-docker-image:
+    name: Build NORTH Docker Image
+    uses: ./.github/workflows/publish-north.yml
+    secrets: inherit
+  {% endif %}
+
   setup:
     name: Checkout and Install
     runs-on: ubuntu-latest
@@ -70,7 +79,12 @@ jobs:
 
   build:
     name: Build Package
-    needs: [compare-versions, test]
+    needs:
+      - compare-versions
+      - test
+      {% if cookiecutter.include_north_tools %}
+      - build-docker-image
+      {% endif %}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -81,6 +95,15 @@ jobs:
         uses: astral-sh/setup-uv@v5
         with:
           python-version: {% raw %}${{ env.python-version }}{% endraw %}
+
+      {% if cookiecutter.include_north_tools %}
+      - name: Overwrite the image tag
+        run: |
+          {% raw %}IMAGE_TAG=$(grep -oP "${{ env.IMAGE }}:\K[^'\",]+" {% endraw %}src/{{cookiecutter.__module_name}}/nomad/north_tools/__init__.py)
+          {% raw %}sed -i "s|${{ env.IMAGE }}:${IMAGE_TAG}|${{ env.IMAGE }}:${GITHUB_REF_NAME}|g" \{% endraw %}
+          src/{{cookiecutter.__module_name}}/nomad/north_tools/__init__.py
+      {% endif %}
+
       - name: Build package
         run: uv build
       - name: Upload dist artifacts
