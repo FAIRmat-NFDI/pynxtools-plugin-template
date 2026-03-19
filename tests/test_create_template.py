@@ -46,12 +46,14 @@ def initialize_git(project_path: str):
 ])
 @pytest.mark.parametrize("include_nomad_app", [True, False])
 @pytest.mark.parametrize("include_nomad_example_upload", [True, False])
+@pytest.mark.parametrize("include_north_tools", [True, False])
 def test_run_cookiecutter_and_plugin_tests(
     cookies,
     reader_name,
     license,
     include_nomad_app,
     include_nomad_example_upload,
+    include_north_tools,
 ):
     """Create a new plugin via cookiecutter, initialize Git, and run its tests."""
     result = cookies.bake(
@@ -64,6 +66,7 @@ def test_run_cookiecutter_and_plugin_tests(
             "vscode_settings": "True",
             "include_nomad_app": str(include_nomad_app),
             "include_nomad_example_upload": str(include_nomad_example_upload),
+            "include_north_tools": str(include_north_tools),
         }
     )
     assert result.exit_code == 0
@@ -85,10 +88,29 @@ def test_run_cookiecutter_and_plugin_tests(
 
     if include_nomad_example_upload:
         assert result.project_path.joinpath("src", module_name, "nomad", "example_uploads", "__init__.py").is_file()
+    else:
+        assert not result.project_path.joinpath("src", module_name, "nomad", "example_uploads", "__init__.py").is_file()
+
+    north_tool_folder = result.context["__nomad_north_tool"]
+    
+    if include_north_tools:
+        assert result.project_path.joinpath("src", module_name, "nomad", "north_tools", "__init__.py").is_file()
+        assert result.project_path.joinpath("src", module_name, "nomad", "north_tools", north_tool_folder).is_dir()
+        assert result.project_path.joinpath("src", module_name, "nomad", "north_tools", north_tool_folder, "__init__.py").is_file()
+        assert result.project_path.joinpath("src", module_name, "nomad", "north_tools", north_tool_folder, "Dockerfile").is_file()
+        assert result.project_path.joinpath(".dockerignore").is_file()
+        assert result.project_path.joinpath(".github", "workflows", "publish-north.yml").is_file()
+    else:
+        assert not result.project_path.joinpath("src", module_name, "nomad", "north_tools", "__init__.py").is_file()
+        assert not result.project_path.joinpath("src", module_name, "nomad", "north_tools", north_tool_folder).is_dir()
+        assert not result.project_path.joinpath("src", module_name, "nomad", "north_tools", north_tool_folder, "__init__.py").is_file()
+        assert not result.project_path.joinpath("src", module_name, "nomad", "north_tools", north_tool_folder, "Dockerfile").is_file()
+        assert not result.project_path.joinpath(".dockerignore").exists()
+        assert not result.project_path.joinpath(".github", "workflows", "publish-north.yml").exists()
 
     # Initialize Git so setuptools_scm can determine the version
     initialize_git(project_path)
 
     # Only run tox if the project has any of the Nomad components
-    if include_nomad_app or include_nomad_example_upload:
+    if include_nomad_app or include_nomad_example_upload or include_north_tools:
         run_tox(project_path)

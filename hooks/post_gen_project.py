@@ -7,9 +7,9 @@ import shutil
 logging.basicConfig(level=logging.INFO)
 logger: logging.Logger = logging.getLogger("post_gen_project")
 
-ALL_TEMP_FOLDERS = ["licenses", "py_sources"]
+ALL_TEMP_FOLDERS = ["licenses", "py_sources", "north_sources"]
 PY_SOURCES = Path("py_sources")
-
+NORTH_SOURCES = Path("north_sources")
 
 def remove(path: Path | str):
     """Remove file or directory if it exists."""
@@ -39,7 +39,6 @@ def move_files(
     variant: str,
     save_path: Path,
     source_root: Optional[Path] = None,
-    source_file: Optional[Path] = None,
 ):
     """
     Move files from source_root/variant to save_path
@@ -116,8 +115,11 @@ if __name__ == "__main__":
                         test_data_dir,
                         dst_test_data_dir,
                     )
-        if "north_tools" not in variants:
-            Path.unlink(root / ".dockerignore")
-            Path.unlink(root / ".github" / "workflows" / "publish-north.yml")
+        if "north_tools" in variants:
+            move_files(
+                variant=".",  # workaround to use the same function
+                save_path=root,
+                source_root=NORTH_SOURCES,
+            )
 
         remove_temp_folders(ALL_TEMP_FOLDERS)
