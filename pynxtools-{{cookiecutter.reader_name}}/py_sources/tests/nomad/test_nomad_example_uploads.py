@@ -40,6 +40,7 @@ from {{cookiecutter.__module_name}}.nomad.example_uploads import {{cookiecutter.
 EXAMPLE_PATH = os.path.join(
     os.path.dirname(__file__),
     "..",
+    "..",
     "src",
     "{{cookiecutter.__module_name}}",
     "nomad",
