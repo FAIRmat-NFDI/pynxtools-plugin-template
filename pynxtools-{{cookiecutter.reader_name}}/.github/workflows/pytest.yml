@@ -16,6 +16,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0      
       - name: Install uv and set the python version to {% raw %}${{ matrix.python-version }}{% endraw %}
         uses: astral-sh/setup-uv@v5
         with:
