@@ -6,8 +6,8 @@
 ![](https://img.shields.io/pypi/l/{{cookiecutter.__package_name}})
 ![](https://img.shields.io/pypi/v/{{cookiecutter.__package_name}})
 ![Coverage Status](https://coveralls.io/repos/github/FAIRmat-NFDI/{{cookiecutter.__package_name}}/badge.svg?branch=main)
-{%- if cookiecutter.zenodo_record %}
-[![DOI](https://zenodo.org/badge/759916501.svg)](https://doi.org/10.5281/zenodo.{{cookiecutter.zenodo_record}})
+{%- if cookiecutter.__zenodo_record %}
+[![DOI](https://zenodo.org/badge/759916501.svg)](https://doi.org/10.5281/zenodo.{{cookiecutter.__zenodo_record}})
 {%- endif %}
 
 # `{{cookiecutter.__package_name}}`: A `pynxtools` reader for {{cookiecutter.technique}} data

@@ -9,9 +9,9 @@ authors:
   - given-names:
     family-names:
 repository-code: https://github.com/FAIRmat-NFDI/{{cookiecutter.__package_name}}
-{%- if cookiecutter.zenodo_record %}
-doi: 10.5281/zenodo.{{cookiecutter.zenodo_record}}
-url: https://zenodo.org/records/{{cookiecutter.zenodo_record}}
+{%- if cookiecutter.__zenodo_record %}
+doi: 10.5281/zenodo.{{cookiecutter.__zenodo_record}}
+url: https://zenodo.org/records/{{cookiecutter.__zenodo_record}}
 {%- endif %}
 keywords:
   - NeXus

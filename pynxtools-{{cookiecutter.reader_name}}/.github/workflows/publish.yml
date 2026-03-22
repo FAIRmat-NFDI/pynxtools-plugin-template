@@ -7,7 +7,7 @@ on:
 env:
   python-version: 3.12
   {%- if cookiecutter.include_north_tools %}
-  IMAGE: "ghcr.io/{{cookiecutter.github_username|lower}}/{{cookiecutter.__package_name}}"
+  IMAGE: "ghcr.io/{{cookiecutter.__github_username|lower}}/{{cookiecutter.__package_name}}"
   {%- endif %}
 
 jobs:
