@@ -20,7 +20,7 @@ from nomad.config.models.plugins import NorthToolEntryPoint
 
 tool = NORTHTool(
     short_description="NORTH tool for pynxtools plugin {{cookiecutter.__package_name}}.",
-    image="ghcr.io/{{cookiecutter.github_username or cookiecutter.organization_name}}/{{cookiecutter.__package_name}}/jupyter:latest",
+    image="ghcr.io/{{cookiecutter.__github_username or cookiecutter.__organization_name}}/{{cookiecutter.__package_name}}/jupyter:latest",
     description="NORTH tool for pynxtools plugin {{cookiecutter.__package_name}}.",
     external_mounts=[],
     file_extensions=["ipynb", "nxs"],

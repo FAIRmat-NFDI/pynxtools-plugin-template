@@ -1,0 +1,23 @@
+{
+  "/ENTRY/definition": "NXdouble_slit",
+  "/ENTRY/title": "@eln",
+  "/ENTRY/start_time": "@eln",
+  "/ENTRY/INSTRUMENT[instrument]/source/wavelength": "@attrs:metadata/instrument/source/wavelength",
+  "/ENTRY/INSTRUMENT[instrument]/source/wavelength/@units": "nm",
+  "/ENTRY/INSTRUMENT[instrument]/source/coherence_length": "@attrs:metadata/instrument/source/coherence_length",
+  "/ENTRY/INSTRUMENT[instrument]/source/coherence_length/@units": "mm",
+  "/ENTRY/INSTRUMENT[instrument]/source/type": "@eln",
+  "/ENTRY/INSTRUMENT[instrument]/double_slit/x_gap": "@attrs:metadata/instrument/double_slit/x_gap",
+  "/ENTRY/INSTRUMENT[instrument]/double_slit/x_gap/@units": "mm",
+  "/ENTRY/INSTRUMENT[instrument]/double_slit/slit_separation": "@attrs:metadata/instrument/double_slit/slit_separation",
+  "/ENTRY/INSTRUMENT[instrument]/double_slit/slit_separation/@units": "mm",
+  "/ENTRY/INSTRUMENT[instrument]/detector/distance": "@attrs:metadata/instrument/detector/distance",
+  "/ENTRY/INSTRUMENT[instrument]/detector/distance/@units": "mm",
+  "/ENTRY/interference_pattern/data": "@data:interference_data",
+  "/ENTRY/interference_pattern/@axes":["x","y"],
+  "/ENTRY/interference_pattern/@signal":"data",
+  "/ENTRY/interference_pattern/x": "@data:x_offset",
+  "/ENTRY/interference_pattern/x/@units": "mm",
+  "/ENTRY/interference_pattern/y": "@data:y_offset",
+  "/ENTRY/interference_pattern/y/@units": "mm"
+}

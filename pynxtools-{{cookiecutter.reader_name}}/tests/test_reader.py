@@ -34,7 +34,12 @@ ignore_sections_all_tests: dict = {}
 
 # Test cases should be [("folder", ignore_lines, ignore_sections, "test-id")]
 test_cases: list[tuple[str, list[Any], dict[Any, Any], str]] = [
-    ("folder", [], {}, "test-id"),
+    (
+        ".",
+        [],
+        {},
+        "reader-test",
+    ),
 ]
 
 test_params: list[Any] = []

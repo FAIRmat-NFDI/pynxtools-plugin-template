@@ -21,19 +21,19 @@ Run the following command to create a new `pynxtools` plugin project using `pynx
 ### Using https
 
 ```bash
-cruft create https://github.com/FAIRmat-NFDI/pynxtools-plugin-template.git
+cruft create https://github.com/FAIRmat-NFDI/pynxtools-plugin-template.git -c bessy-datathon
 ```
 
 ### Using ssh
 
 ```bash
-cruft create git@github.com:FAIRmat-NFDI/pynxtools-plugin-template.git
+cruft create git@github.com:FAIRmat-NFDI/pynxtools-plugin-template.git -c bessy-datathon
 ```
 
 ### Using the GitHub CLI
 
 ```bash
-cruft create gh:FAIRmat-NFDI/pynxtools-plugin-template.git
+cruft create gh:FAIRmat-NFDI/pynxtools-plugin-template.git -c bessy-datathon
 ```
 
 ## Existing projects
