@@ -20,6 +20,7 @@
 from typing import Any
 
 from pynxtools.dataconverter.readers.multi.reader import MultiFormatReader
+from pynxtools.dataconverter.readers.utils import parse_yml
 
 
 class {{cookiecutter.reader_class}}(MultiFormatReader):
@@ -55,18 +56,27 @@ class {{cookiecutter.reader_class}}(MultiFormatReader):
 
     supported_nxdls = ["{{cookiecutter.supported_nxdl}}"]
 
-    # Map ELN key names to NeXus path fragments (optional, used by handle_eln_file).
-    CONVERT_DICT: dict[str, str] = {}
+    # Map ELN top-level YAML keys to NeXus path fragments (used by handle_eln_file).
+    # Keys that already match NeXus path names (e.g. "source", "double_slit") need
+    # no entry — only keys that require renaming do.
+    CONVERT_DICT: dict[str, str] = {
+        "instrument": "INSTRUMENT[instrument]",
+    }
     # Replace nested YAML keys with flat NeXus paths (optional).
     REPLACE_NESTED: dict[str, str] = {}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        # Parsed data from file handlers — populated by handle_hdf5_file / handle_eln_file.
+        self.hdf5_data: dict[str, Any] | None = None
+        self.eln_data: dict[str, Any] | None = None
+
         # Register file-extension handlers here.
-        # Keys must be lowercase file suffixes (e.g. ".txt", ".hdf5").
+        # Keys must be lowercase file suffixes (e.g. ".h5", ".yaml").
         # Each handler receives the file path and must return a dict.
         self.extensions: dict[str, Any] = {
-            # ".ext": self._handle_ext_file,
+            ".h5": self.handle_hdf5_file,
+            ".hdf5": self.handle_hdf5_file,
             ".yaml": self.handle_eln_file,
             ".yml": self.handle_eln_file,
             ".json": self.set_config_file,
@@ -76,34 +86,48 @@ class {{cookiecutter.reader_class}}(MultiFormatReader):
     # File handlers — add one per supported input format.
     # ------------------------------------------------------------------
 
-    # def handle_eln_file(self, file_path: str) -> dict[str, Any]:
-    #     """Read an ELN file and store data on self for later use."""
-    #     ...
-    #     return {}
-
-    # def _handle_ext_file(self, file_path: str) -> dict[str, Any]:
-    #     """Read a .ext file and store data on self for later use."""
-    #     ...
-    #     return {}
+    def handle_hdf5_file(self, file_path: str) -> None:
+        """Load HDF5 data into self.hdf5_data as a flat dict {path: value}."""
+        # TODO: implement
+        return {}
+   
+    def handle_eln_file(self, file_path: str) -> None:
+        self.eln_data = parse_yml(
+            file_path,
+            convert_dict=self.CONVERT_DICT,
+            parent_key="/ENTRY",
+        )
+        return {}
 
     # ------------------------------------------------------------------
-    # Callbacks — called when the config file contains @attrs / @data tokens.
+    # Callbacks — called when the config file contains @attrs / @data / @eln tokens.
     # ------------------------------------------------------------------
 
-    def get_eln(self, key: str, path: str) -> Any:
-        """Return ELN metadata from ``path`` for ``@attrs:path`` tokens."""
+    def get_eln_data(self, key: str, path: str) -> Any:
+        """Return ELN metadata for ``@eln`` tokens.
+
+        ``parse_yml`` produces flat template-path keys, so look up by ``key``
+        (the full NeXus path), not by ``path``.
+        """
+        # TODO: implement
         return None
 
     def get_attr(self, key: str, path: str) -> Any:
-        """Return instrument metadata from ``path`` for ``@attrs:path`` tokens."""
-        return None
+        """Return instrument metadata from ``self.hdf5_data`` for ``@attrs:path`` tokens.
 
-    def get_data_dims(self, key: str, path: str) -> Any:
-        """Return dimensions from ``path`` for ``@data:path`` tokens."""
+        ``path`` is the HDF5 dataset path, e.g.
+        ``"metadata/instrument/source/wavelength"``.
+        """
+        # TODO: implement
         return None
 
     def get_data(self, key: str, path: str) -> Any:
-        """Return measurement data from ``path`` for ``@data:path`` tokens."""
+        """Return measurement arrays from ``self.hdf5_data`` for ``@data:path`` tokens.
+
+        ``path`` is the dataset name inside the ``data/`` group, e.g.
+        ``"detector_data"``, ``"x_offset"``, ``"interference_data"``.
+        """
+        # TODO: implement
         return None
 
     # ------------------------------------------------------------------
