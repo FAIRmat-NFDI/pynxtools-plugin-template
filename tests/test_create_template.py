@@ -38,11 +38,11 @@ def initialize_git(project_path: str):
 
 @pytest.mark.parametrize("reader_name", ["test"])
 @pytest.mark.parametrize("license", [
-    "Apache Software License 2.0",
-    "BSD-3",
-    "GNU GPL v3.0+",
+    "Apache-2.0",
+    "BSD-3-Clause",
+    "GPL-3.0-or-later",
     "MIT",
-    "Mozilla Public License Version 2.0"
+    "MPL-2.0"
 ])
 @pytest.mark.parametrize("include_nomad_app", [True, False])
 @pytest.mark.parametrize("include_nomad_example_upload", [True, False])
