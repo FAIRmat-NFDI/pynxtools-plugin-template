@@ -9,11 +9,11 @@
   "github_username": "",
   "organization_name": "fairmat-nfdi",
   "license": [
-    "Apache Software License 2.0",
-    "BSD-3",
-    "GNU GPL v3.0+",
+    "Apache-2.0",
+    "BSD-3-Clause",
+    "GPL-3.0-or-later",
     "MIT",
-    "Mozilla Public License Version 2.0"
+    "MPL-2.0"
   ],
   "zenodo_record": "",
   "vscode_settings": true,
