@@ -24,6 +24,6 @@ def get_{{cookiecutter.__module_name}}_version() -> str:
     # for a discussion whether to collect at build or runtime see
     # https://discuss.python.org/t/please-make-package-version-go-away/58501
     try:
-        return importlib.metadata.version({{cookiecutter.__module_name}})
+        return importlib.metadata.version("{{cookiecutter.__package_name}}")
     except importlib.metadata.PackageNotFoundError:
         return f"unknown_version"
