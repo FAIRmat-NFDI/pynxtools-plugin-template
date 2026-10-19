@@ -122,4 +122,4 @@ if __name__ == "__main__":
                 source_root=NORTH_SOURCES,
             )
 
-        remove_temp_folders(ALL_TEMP_FOLDERS)
+    remove_temp_folders(ALL_TEMP_FOLDERS)
