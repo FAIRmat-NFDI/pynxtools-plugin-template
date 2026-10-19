@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - main
+      - develop
+      - 'release/**'
   pull_request:
     branches:
       - main
+      - develop
+      - 'release/**'
     # Run workflow only when there are changes in pyproject.toml or dev-requirements.txt
     # paths:
     #   - 'pyproject.toml'
@@ -29,9 +33,13 @@ jobs:
         git submodule update --init --recursive --depth 1
     - name: Add {{cookiecutter.__package_name}} dependency in NOMAD test_plugins.txt
       working-directory: ./nomad
+      env:
+        # For PRs from forks, install from the fork repository, not from upstream.
+        SOURCE_REPO: {% raw %}${{ github.event.pull_request.head.repo.full_name || github.repository }}{% endraw %}
+        SOURCE_REF: {% raw %}${{ github.head_ref || github.ref_name }}{% endraw %}
       run: |
         echo "" >> test_plugins.txt
-        echo "{{cookiecutter.__package_name}}@git+https://github.com/FAIRmat-NFDI/{{cookiecutter.__package_name}}.git@{% raw %}${{ github.head_ref || github.ref_name }}{% endraw %}" >> test_plugins.txt
+        echo "{{cookiecutter.__package_name}}@git+https://github.com/${SOURCE_REPO}.git@${SOURCE_REF}" >> test_plugins.txt
     - name: Install uv and set the python version to {% raw %}${{ env.python-version }}{% endraw %}
       uses: astral-sh/setup-uv@v5
       with:

@@ -154,6 +154,36 @@ git commit -m "initial commit"
 
 to initialize git versioning. If your repository is published to GitHub, this also enables the previously mentioned automated update in the Github Actions.
 
+## Branching and releases
+
+Generated plugins follow the `develop` / `release/*` / `main` branching model of `pynxtools`:
+
+- `develop`: default branch, all regular PRs target it.
+- `release/vX.Y.Z`: created from `develop` for each release.
+- `main`: released versions only, receives PRs from `release/*` branches.
+
+The full model and release steps are described in `docs/tutorial/contributing.md` of your plugin.
+
+### One-time GitHub setup
+
+The workflows expect this setup, so do it once after pushing your plugin to GitHub:
+
+1. Create the `develop` branch from `main` and push it:
+
+    ```bash
+    git switch -c develop
+    git push -u origin develop
+    ```
+
+1. Make `develop` the [default branch](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-branches-in-your-repository/changing-the-default-branch).
+1. Add a [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) for `main` and mark the `check-source-branch` job (from `.github/workflows/check-source-is-release.yml`) as a required status check. GitHub only lists a check after it has run once, so open a test PR into `main` first if it does not show up.
+
+Without the `develop` branch, the weekly Cruft update workflow fails, because it checks out and targets `develop`.
+
+### Existing plugins
+
+The Cruft update workflow never changes files in `.github/workflows`. To adopt this model in an existing plugin, copy the workflows from a freshly generated plugin by hand and then do the one-time setup above.
+
 ## What you should implement
 
 The cookiecutter template only creates the basic structure of the repository. In order to have a useful package, there are multiple topics you should address.
@@ -163,4 +193,4 @@ The cookiecutter template only creates the basic structure of the repository. In
 - **Documentation**: There is a [`mkdocs`](https://www.mkdocs.org/) template available in the `docs` folder. You should add to the documentation (keeping to the [Diátaxis](https://diataxis.fr/) framework).
 - **NOMAD integration**: If you choose to use a NOMAD entry plugin point during package creation with cookiecutter, you should implement these entry points. You can learn more about NOMAD entry points in the [NOMAD documentation](https://nomad-lab.eu/prod/v1/docs/howto/plugins/plugins.html).
 - **Spellcheck**: We run spellcheckers using [`cspell`](https://cspell.org/) of both the code and the documentation. The spellchecker is integrated as a [pre-commit hook](https://pre-commit.com/) as well as in an automated GitHub Actions pipeline. When creating your reader, you may use custom words that are in the standard `cspell` dictionaries. In your new plugin, there is a custom dictionary defined in `.cspell/custom-dictionary.txt`. You can automatically update it by running the bash script at `scripts/generate_custom_dict.sh`. Please check the updated custom dictionary after running the script for typos and misspellings.
-- **Publish**: Once your reader plugin is working, you should create a release on GitHub. When you release the package on GitHub, it is automatically published on PyPI, provided that you have added a PyPI access token to your repository. For publication to Zenodo, it is also important to fill out the `CITATION.cff` file.
+- **Publish**: Once your reader plugin is working, you should create a release on GitHub from a `release/vX.Y.Z` branch (see [Branching and releases](#branching-and-releases)). When you release the package on GitHub, it is automatically published on PyPI, provided that you have added a PyPI access token to your repository. For publication to Zenodo, it is also important to fill out the `CITATION.cff` file.
