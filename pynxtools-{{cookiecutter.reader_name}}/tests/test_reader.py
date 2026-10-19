@@ -18,6 +18,7 @@
 """Tests for the pynxtools reader plugin."""
 
 import os
+from glob import glob
 from typing import Any
 
 import pytest
@@ -91,6 +92,8 @@ def test_nexus_conversion(
     files_or_dir = os.path.join(
         *[os.path.dirname(__file__), "data", sub_reader_data_dir]
     )
+    if not glob(os.path.join(files_or_dir, "*.nxs")):
+        pytest.skip(f"No reference NeXus file in {files_or_dir}; add test data first.")
 
     ignore_lines: list[str] = ignore_lines_all_tests + ignore_lines
     ignore_sections: dict[str, list[str]] = ignore_sections_all_tests | ignore_sections

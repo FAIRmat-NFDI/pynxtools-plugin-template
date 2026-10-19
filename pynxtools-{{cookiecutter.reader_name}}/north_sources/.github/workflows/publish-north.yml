@@ -84,12 +84,12 @@ jobs:
       - name: Setup Repository
         uses: actions/checkout@v4
       - name: Log in to GitHub Container Registry
-          # if: {% raw %}${{ github.event_name != 'pull_request' }}{% endraw %}
-          uses: docker/login-action@v3
-          with:
-            registry: {% raw %}${{ env.REGISTRY }}{% endraw %}
-            username: {% raw %}${{ github.actor }}{% endraw %}
-            password: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
+        # if: {% raw %}${{ github.event_name != 'pull_request' }}{% endraw %}
+        uses: docker/login-action@v3
+        with:
+          registry: {% raw %}${{ env.REGISTRY }}{% endraw %}
+          username: {% raw %}${{ github.actor }}{% endraw %}
+          password: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
@@ -100,9 +100,9 @@ jobs:
       # Enable this if you are building a Jupyter-based tool.
       # - name: Load and test in Jupyter container
       #   run: |
-      #     {% raw %}docker load -i ${{ runner.temp }}/{{cookiecutter.north_tool_name}}.tar.gz
+      #     docker load -i {% raw %}${{ runner.temp }}{% endraw %}/{{cookiecutter.north_tool_name}}.tar.gz
 
-      #     RAW_TAGS="${{ needs.build.outputs.tags }}"
+      #     {% raw %}RAW_TAGS="${{ needs.build.outputs.tags }}"
       #     echo "Raw tags: $RAW_TAGS"
       #     FIRST_TAG=$(echo "$RAW_TAGS" | tr -s '[:space:]' '\n' | grep -v '^$' | head -n 1)
       #     echo "Using tag: $FIRST_TAG"

@@ -91,6 +91,9 @@ def test_run_cookiecutter_and_plugin_tests(
     else:
         assert not result.project_path.joinpath("src", module_name, "nomad", "example_uploads", "__init__.py").is_file()
 
+    for temp_folder in ["licenses", "py_sources", "north_sources"]:
+        assert not result.project_path.joinpath(temp_folder).exists()
+
     north_tool_folder = result.context["__nomad_north_tool"]
     
     if include_north_tools:

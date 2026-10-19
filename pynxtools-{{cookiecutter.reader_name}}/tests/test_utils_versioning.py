@@ -28,8 +28,8 @@ def test_get_{{cookiecutter.__module_name}}_version():
         r"""
         ^
         (?P<major>\d+)\.
-        (?P<minor>\d+)\.
-        (?P<patch>\d+)
+        (?P<minor>\d+)
+        (?:\.(?P<patch>\d+))?  # no patch in untagged repos, e.g. 0.0.post1.dev1
         (?:\.post(?P<post>\d+))?
         (?:\.dev(?P<dev>\d+))?
         (?:\+(?P<local>[a-zA-Z0-9\.]+))?
