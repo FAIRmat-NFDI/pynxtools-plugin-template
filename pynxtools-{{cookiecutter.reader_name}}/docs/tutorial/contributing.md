@@ -49,6 +49,14 @@ allows PRs into `main` only from `release/*` branches. PRs from any other branch
 fail this check. It is enforced by marking it as a required status check in the branch protection rule
 for `main`.
 
+!!! info "Repository setup for maintainers"
+    This model needs a one-time setup on GitHub:
+
+    - Create the `develop` branch and make it the [default branch](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-branches-in-your-repository/changing-the-default-branch).
+    - Add a [branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule) for `main` with the `check-source-branch` job as a required status check.
+
+    The Cruft update workflow also checks out and targets `develop`, so it fails without this branch.
+
 ### Setup
 
 It is recommended to use python 3.12 with a dedicated virtual environment for this package. Learn how to manage [python versions](https://github.com/pyenv/pyenv) and [virtual environments](https://realpython.com/python-virtual-environments-a-primer/). We recommend using [`uv`](https://github.com/astral-sh/uv), an extremely fast Python package and project manager. In this tutorial, you will find parallel descriptions, using either `uv` or a more classical approach using `venv` and `pip`.
